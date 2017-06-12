@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  iosreviewApp
+
+  Created by dan jin on 6/3/17.
+  Copyright © 2017 star. All rights reserved.
+*/
+"Loading" = "Loading...";
+"Cancel" = "Cancel";
+"request failed" = "request failed";
+"please type your email" = "please type your email";
+"success" = "success";
+"Time left" = "Time left";
+"first name is empty" = "first name is empty";
+"last name is empty" = "last name is empty";
