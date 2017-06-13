@@ -1,23 +1,23 @@
 //
-//  HomeViewController.m
+//  RateViewController.m
 //  iosreviewApp
 //
-//  Created by star on 5/20/17.
+//  Created by dan jin on 6/10/17.
 //  Copyright © 2017 star. All rights reserved.
 //
 
-#import "HomeViewController.h"
-#import "SWRevealViewController.h"
+#import "RateViewController.h"
 
-#import "SearchViewController.h"
+#import "SWRevealViewController.h"
 #import "ContactViewController.h"
+#import "SearchViewController.h"
 #import "ScanController.h"
 
-@interface HomeViewController ()
+@interface RateViewController ()
 
 @end
 
-@implementation HomeViewController
+@implementation RateViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,16 +33,20 @@
         [self.rightbarButton setAction: @selector( rightRevealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
-    float width = [[UIScreen mainScreen] bounds].size.width;
     
-    [_categoryView setFrame:CGRectMake(_categoryView.frame.origin.x,
-                                       _categoryView.frame.origin.y,
-                                       width,
-                                       _categoryView.frame.size.height)];
+    NSString *urlString = @"http://ansfy.com/reviewapp/webservice/faq.php";
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [_rateWebview loadRequest:urlRequest];
+    
+}
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 - (IBAction)searchClicked:(id)sender {
-
+    
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SearchViewController * controller = (SearchViewController *)[storyboard instantiateViewControllerWithIdentifier:@"searchview"];
     [self presentViewController:controller animated:NO completion:nil];
@@ -50,7 +54,7 @@
 - (IBAction)contactClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
-
+    
     controller.modalPresentationStyle =  UIModalPresentationOverCurrentContext;
     
     [self presentViewController:controller animated:NO completion:nil];
@@ -60,12 +64,6 @@
     ScanController * controller = (ScanController *)[storyboard instantiateViewControllerWithIdentifier:@"barcodeview"];
     [self presentViewController:controller animated:NO completion:nil];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 /*
 #pragma mark - Navigation
 

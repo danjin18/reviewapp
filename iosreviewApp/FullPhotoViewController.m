@@ -1,23 +1,24 @@
 //
-//  HomeViewController.m
+//  FullPhotoViewController.m
 //  iosreviewApp
 //
-//  Created by star on 5/20/17.
+//  Created by star on 5/26/17.
 //  Copyright © 2017 star. All rights reserved.
 //
 
-#import "HomeViewController.h"
-#import "SWRevealViewController.h"
+#import "FullPhotoViewController.h"
+#import "UIImageView+AFNetworking.h"
 
+#import "SWRevealViewController.h"
 #import "SearchViewController.h"
 #import "ContactViewController.h"
 #import "ScanController.h"
 
-@interface HomeViewController ()
+@interface FullPhotoViewController ()
 
 @end
 
-@implementation HomeViewController
+@implementation FullPhotoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,16 +34,14 @@
         [self.rightbarButton setAction: @selector( rightRevealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
-    float width = [[UIScreen mainScreen] bounds].size.width;
     
-    [_categoryView setFrame:CGRectMake(_categoryView.frame.origin.x,
-                                       _categoryView.frame.origin.y,
-                                       width,
-                                       _categoryView.frame.size.height)];
-
+    _productPhoto.image = nil;
+    NSURL *url = [NSURL URLWithString:_photoURL];
+    [_productPhoto setImageWithURL:url];
 }
-- (IBAction)searchClicked:(id)sender {
 
+- (IBAction)searchClicked:(id)sender {
+    
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SearchViewController * controller = (SearchViewController *)[storyboard instantiateViewControllerWithIdentifier:@"searchview"];
     [self presentViewController:controller animated:NO completion:nil];
@@ -50,7 +49,7 @@
 - (IBAction)contactClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
-
+    
     controller.modalPresentationStyle =  UIModalPresentationOverCurrentContext;
     
     [self presentViewController:controller animated:NO completion:nil];

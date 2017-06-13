@@ -21,6 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *priceTable;
 @property (weak, nonatomic) IBOutlet UILabel *notFoundLabel;
+@property (weak, nonatomic) IBOutlet UIView *noProductView;
+@property (weak, nonatomic) IBOutlet UIView *alertView;
 
 
 @end
