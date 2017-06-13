@@ -18,12 +18,18 @@
 #import "utility.h"
 #import "AppDelegate.h"
 
+#import "SWRevealViewController.h"
+#import "ContactViewController.h"
+#import "SearchViewController.h"
+#import "ScanController.h"
+
 @interface ExternalLinkViewController ()
 {
     Preference *pref;
     
     NSTimer *timer;
     int countTime;
+    int currentPosition;
 }
 @end
 
@@ -34,8 +40,27 @@
     // Do any additional setup after loading the view.
     pref = [Preference getInstance];
     
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if ( revealViewController )
+    {
+        [self.sidebarButton setTarget: self.revealViewController];
+        [self.sidebarButton setAction: @selector( revealToggle: )];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        
+        [self.rightbarButton setTarget: self.revealViewController];
+        [self.rightbarButton setAction: @selector( rightRevealToggle: )];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
+    
     countTime = 0;
     [self startTimer];
+    
+    NSString *urlString = [_site objectAtIndex:_curPos];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [_website loadRequest:urlRequest];
+    
+    currentPosition = (int)_curPos;
 }
 -(void)sendStayTime
 {
@@ -72,8 +97,29 @@
 }
 
 - (IBAction)backBtn:(id)sender {
+    if(currentPosition == 0)
+    {
+        return;
+    }
+    else
+        currentPosition--;
+    
+    NSString *urlString = [_site objectAtIndex:currentPosition];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [_website loadRequest:urlRequest];
 }
 - (IBAction)forwardBtn:(id)sender {
+    if([_site count] <= (currentPosition + 1))
+    {
+        return;
+    }
+    else
+        currentPosition++;
+    NSString *urlString = [_site objectAtIndex:currentPosition];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [_website loadRequest:urlRequest];
 }
 - (IBAction)exitBtn:(id)sender {
     
@@ -97,6 +143,26 @@
 -(void)counterTimer
 {
     countTime++;
+}
+
+- (IBAction)searchClicked:(id)sender {
+    
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SearchViewController * controller = (SearchViewController *)[storyboard instantiateViewControllerWithIdentifier:@"searchview"];
+    [self presentViewController:controller animated:NO completion:nil];
+}
+- (IBAction)contactClicked:(id)sender {
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
+    
+    controller.modalPresentationStyle =  UIModalPresentationOverCurrentContext;
+    
+    [self presentViewController:controller animated:NO completion:nil];
+}
+- (IBAction)barcodeClicked:(id)sender {
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ScanController * controller = (ScanController *)[storyboard instantiateViewControllerWithIdentifier:@"barcodeview"];
+    [self presentViewController:controller animated:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

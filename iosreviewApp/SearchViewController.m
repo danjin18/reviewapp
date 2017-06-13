@@ -57,6 +57,9 @@
     pref = [Preference getInstance];
     
     [_productTable registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
+    
+    [_searchText setLeftViewMode:UITextFieldViewModeAlways];
+    _searchText.leftView= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search.png"]];
 }
 - (IBAction)searchTextChanging:(id)sender {
     [self searchProductList:_searchText.text barcodeParameter:FALSE];

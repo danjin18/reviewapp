@@ -84,6 +84,9 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
         [[UIApplication sharedApplication] registerForRemoteNotifications];
         // [END register_for_notifications]
     }
+    
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor orangeColor]];
     return YES;
 }
 

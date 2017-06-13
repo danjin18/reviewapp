@@ -33,12 +33,9 @@
         [self.rightbarButton setAction: @selector( rightRevealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
-    float width = [[UIScreen mainScreen] bounds].size.width;
     
-    [_categoryView setFrame:CGRectMake(_categoryView.frame.origin.x,
-                                       _categoryView.frame.origin.y,
-                                       width,
-                                       _categoryView.frame.size.height)];
+    UINavigationBar *bar = [self.navigationController navigationBar];
+    [bar setTintColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0]];
 
 }
 - (IBAction)searchClicked:(id)sender {

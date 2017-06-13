@@ -14,5 +14,7 @@
 @property (nonatomic, retain) NSMutableArray *site;
 @property (nonatomic) NSInteger curPos;
 @property (nonatomic) NSString *product_id;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *rightbarButton;
 
 @end

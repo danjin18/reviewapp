@@ -90,10 +90,10 @@
                     if([_selStore isEqualToString:@"online"]) {
                         NSArray *arrPrice = [json objectForKey:@"liveUrl"];
                         
-                        if(arrPrice == nil)
+                        if([arrPrice count] == 0)
                         {
-                            _notFoundLabel.hidden = NO;
-                            _priceTable.hidden = YES;
+                            _noProductView.hidden = NO;
+                            _alertView.hidden = YES;
                         }
                         else{
                             for(NSDictionary *priceObj in arrPrice) {
@@ -109,7 +109,7 @@
                     else {
                         NSArray *arrPrice = [json objectForKey:@"priceList"];
                         
-                        if(arrPrice == nil)
+                        if([arrPrice count] == 0)
                         {
                             _notFoundLabel.hidden = NO;
                             _priceTable.hidden = YES;
@@ -150,7 +150,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 45;
 }
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -183,7 +183,7 @@
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         ExternalLinkViewController *controller = (ExternalLinkViewController *)navController.topViewController;
         controller.curPos = selected_row;
-        controller.site = _site;
+        controller.site = _product;
     }
 }
 
