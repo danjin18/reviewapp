@@ -18,4 +18,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet GIDSignInButton *googleLoginBtn;
 
+@property (nonatomic, retain) NSString *country;
 @end

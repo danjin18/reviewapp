@@ -45,7 +45,7 @@
 }
 -(void)setSaleCell:(NSString *)sale_price
 {
-    NSString *title = [NSString stringWithFormat:@"%@ Buy Online >", sale_price];
+    NSString *title = [NSString stringWithFormat:@"$%@ Buy Online >", sale_price];
     [_buyOnline setTitle:title forState:UIControlStateNormal];
 }
 

@@ -48,7 +48,8 @@ extern NSString *const API_POST_GET_RECENT_VIEW;
 extern NSString *const API_POST_ADD_CLICK;
 extern NSString *const API_POST_ADD_NEWFRIENDS;
 extern NSString *const API_POST_GET_SUGGESTED_FRIEND;
-
+extern NSString *const API_POST_GET_REVIEW_COMMENT;
+extern NSString *const API_POST_GET_COUNTRY;
 @interface ServerAPIPath : NSObject
 
 @end

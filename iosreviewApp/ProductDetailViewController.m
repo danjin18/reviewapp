@@ -11,6 +11,9 @@
 #import "ContactViewController.h"
 #import "SearchViewController.h"
 #import "ScanController.h"
+#import "SendReviewViewController.h"
+#import "AddCommentViewController.h"
+#import "AddImageViewController.h"
 
 #import "ProductTableViewCell.h"
 #import "PriceAlertDialogViewController.h"
@@ -38,6 +41,8 @@
     
     int reviewTag;
     BOOL bLike;
+    
+    NSString *commentReviewID, *productID;
 }
 @end
 
@@ -376,7 +381,7 @@
     
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"user_id",
                                 reviewid, @"product_review_id",
-                                likeStatusvalue, @"status",
+                                @"liked", @"status",
                                 nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -389,52 +394,24 @@
             return;
         }
         else {
-
-            if([[self.reviewDetailModel.like_status objectAtIndex:reviewTag] isEqualToString:@"1"]) {
+            NSError *error = nil;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+            if([json objectForKey:@"status"]) {
                 @try {
-                    if(bLike == FALSE)
-                    {
-                        int dislikeCnt = [[self.reviewDetailModel.dislike objectAtIndex:reviewTag] intValue];
-                        dislikeCnt++;
-                        
-                        [self.reviewDetailModel.dislike replaceObjectAtIndex:reviewTag withObject:[NSString stringWithFormat:@"%d", dislikeCnt]];
-                        [self.reviewDetailModel.like_status replaceObjectAtIndex:reviewTag withObject:@"0"];
-                        
-                        int likeCnt = [[self.reviewDetailModel.like objectAtIndex:reviewTag] intValue];
-                        if(likeCnt > 0)
-                            likeCnt--;
-                        
-                        [self.reviewDetailModel.like replaceObjectAtIndex:reviewTag withObject:[NSString stringWithFormat:@"%d", likeCnt]];
-
-                        [self.product_reviewTable reloadData];
-                    }
-                }
-                @catch (NSException *e) {
-                }
-            }
-            else
-            {
-                if(bLike == TRUE)
-                {
-                    int likeCnt = [[self.reviewDetailModel.like objectAtIndex:reviewTag] intValue];
-
-                    likeCnt++;
-                
-                    [self.reviewDetailModel.like replaceObjectAtIndex:reviewTag withObject:[NSString stringWithFormat:@"%d", likeCnt]];
-                    [self.reviewDetailModel.like_status replaceObjectAtIndex:reviewTag withObject:@"1"];
-                    
-                    int dislikeCnt = [[self.reviewDetailModel.dislike objectAtIndex:reviewTag] intValue];
-                    
-                    if(dislikeCnt > 0)
-                        dislikeCnt--;
-                    
-                    [self.reviewDetailModel.dislike replaceObjectAtIndex:reviewTag withObject:[NSString stringWithFormat:@"%d", dislikeCnt]];
+                    NSDictionary *Info = [json objectForKey:@"Data"];
+                    [self.reviewDetailModel.like replaceObjectAtIndex:reviewTag withObject:[Info objectForKey:@"like"]];
+                    [self.reviewDetailModel.dislike replaceObjectAtIndex:reviewTag withObject:[Info objectForKey:@"dislike"]];
+                    [self.reviewDetailModel.like_status replaceObjectAtIndex:reviewTag withObject:[Info objectForKey:@"like_status"]];
                     
                     [self.product_reviewTable reloadData];
                 }
+                @catch (NSException *e) {
+                    NSLog(@"responseInvoiceList - JSONException : %@", e.reason);
+                }
             }
-        }
-        
+            else
+                [[AppDelegate sharedAppDelegate] showToastMessage:NSLocalizedString(@"request failed", @"")];
+            }
         
     } failure:^(NSURLSessionDataTask  *task, NSError  *error) {
         
@@ -453,13 +430,64 @@
         likeStatus = @"0";
     else
         likeStatus = @"1";
-    [self addLike:productReviewID status:likeStatus];
+    [self addDisLike:productReviewID status:likeStatus];
+}
+
+-(void)addDisLike:(NSString *)reviewid status:(NSString *)likeStatusvalue
+{
+    [utility showProgressDialog:self];
+    
+    NSURL *URL = [NSURL URLWithString:API_POST_ADD_LIKE];
+    //    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"user_id",reviewid, @"product_review_id",likeStatus, "status", nil];
+    
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"user_id",
+                                reviewid, @"product_review_id",
+                                @"disliked", @"status",
+                                nil];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager POST:URL.absoluteString parameters:parameters progress:nil success:^(NSURLSessionDataTask * task, id  responseObject) {
+        
+        [utility hideProgressDialog];
+        if (responseObject == nil) {
+            return;
+        }
+        else {
+            NSError *error = nil;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+            if([json objectForKey:@"status"]) {
+                @try {
+                    NSDictionary *Info = [json objectForKey:@"Data"];
+                    [self.reviewDetailModel.like replaceObjectAtIndex:reviewTag withObject:[Info objectForKey:@"like"]];
+                    [self.reviewDetailModel.dislike replaceObjectAtIndex:reviewTag withObject:[Info objectForKey:@"dislike"]];
+                    [self.reviewDetailModel.like_status replaceObjectAtIndex:reviewTag withObject:[Info objectForKey:@"like_status"]];
+                    
+                    [self.product_reviewTable reloadData];
+                }
+                @catch (NSException *e) {
+                    NSLog(@"responseInvoiceList - JSONException : %@", e.reason);
+                }
+            }
+            else
+                [[AppDelegate sharedAppDelegate] showToastMessage:NSLocalizedString(@"request failed", @"")];
+        }
+        
+    } failure:^(NSURLSessionDataTask  *task, NSError  *error) {
+        
+        [utility hideProgressDialog];
+        [[AppDelegate sharedAppDelegate] showToastMessage:error.localizedDescription];
+        
+    }];
 }
 
 -(void) CommentClicked:(UIButton *) sender
 {
 //    selPhoto = [self.productModel.product_photo objectAtIndex:sender.tag];
-
+    commentReviewID = [self.reviewDetailModel.product_reviewid objectAtIndex:sender.tag];
+    productID = [self.reviewDetailModel.product_id objectAtIndex:sender.tag];
+    [self performSegueWithIdentifier:@"commentSegue" sender:self];
 }
 
 -(void) ImageClicked:(UIButton *) sender
@@ -467,7 +495,7 @@
 //    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *) sender;
  //   selPhoto = [self.productModel.product_photo objectAtIndex:gesture.view.tag];
     
-//    [self performSegueWithIdentifier:@"fullPhotoSegue" sender:self];
+    [self performSegueWithIdentifier:@"imageSegue" sender:self];
 }
 
 -(void)myFunction :(id) sender
@@ -592,6 +620,18 @@
 
     }
     if([[segue identifier] isEqualToString:@"rateSegue"]) {
+        SendReviewViewController *vc = [segue destinationViewController];
+        vc.product_id = _product_id;
+    }
+    if([[segue identifier] isEqualToString:@"commentSegue"])
+    {
+        AddCommentViewController *vc = [segue destinationViewController];
+        vc.productID = productID;
+        vc.reviewID = commentReviewID;
+        vc.commentCount = 0;
+    }
+    if([[segue identifier] isEqualToString:@"imageSegue"])
+    {
         
     }
     // Pass the selected object to the new view controller.
@@ -618,7 +658,7 @@
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SearchViewController * controller = (SearchViewController *)[storyboard instantiateViewControllerWithIdentifier:@"searchview"];
-    [self presentViewController:controller animated:NO completion:nil];
+    [self.navigationController pushViewController: controller animated:YES];
 }
 - (IBAction)contactClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -631,7 +671,7 @@
 - (IBAction)barcodeClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ScanController * controller = (ScanController *)[storyboard instantiateViewControllerWithIdentifier:@"barcodeview"];
-    [self presentViewController:controller animated:NO completion:nil];
+    [self.navigationController pushViewController: controller animated:YES];
 }
 
 @end

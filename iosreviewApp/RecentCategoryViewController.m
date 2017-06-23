@@ -8,6 +8,8 @@
 
 #import "RecentCategoryViewController.h"
 #import "ReviewAllTableViewController.h"
+#import "ProductDetailViewController.h"
+#import "FullPhotoViewController.h"
 #import "SWRevealViewController.h"
 
 #import "categoryTableViewCell.h"
@@ -25,6 +27,7 @@
 @interface RecentCategoryViewController ()
 {
     int selected_row;
+    NSString *selPhoto;
 }
 @end
 
@@ -98,9 +101,22 @@
     [cell setRatevalueCell:review];
     [cell setCountCell:totalReviewCount];
     
+    cell.category_image.userInteractionEnabled = YES;
+    cell.category_image.tag = indexPath.row;
+    
+    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullPhoto:)];
+    tapped.numberOfTapsRequired = 1;
+    [cell.category_image addGestureRecognizer:tapped];
+    
     return cell;
 }
-
+-(void)fullPhoto :(id) sender
+{
+    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *) sender;
+    selPhoto = [self.arrReview.primary_photos objectAtIndex:gesture.view.tag];
+    
+    [self performSegueWithIdentifier:@"fullPhotoSegue" sender:self];
+}
 - (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section
 {
     return 8;
@@ -113,6 +129,8 @@
 {
     [_tableView deselectRowAtIndexPath:indexPath animated:NO];
     selected_row = (int)indexPath.row;
+    
+    [self performSegueWithIdentifier:@"detailSegue" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,6 +144,21 @@
         
         ReviewAllTableViewController *reviewTable = [segue destinationViewController];
         reviewTable.arrAllReview = self.arrReview;
+    }
+    if([[segue identifier] isEqualToString:@"detailSegue"])
+    {
+        ProductDetailViewController *vc = [segue destinationViewController];
+        vc.product_id = [_arrReview.product_id objectAtIndex:selected_row];
+        vc.category_id = [_arrReview.category_id objectAtIndex:selected_row];
+        vc.product_photoval = [_arrReview.primary_photos objectAtIndex:selected_row];
+        vc.product_title = [_arrReview.name objectAtIndex:selected_row];
+        vc.product_rateval = [_arrReview.review objectAtIndex:selected_row];
+        vc.review_count = [_arrReview.totalReviewCount objectAtIndex:selected_row];
+    }
+    if([[segue identifier] isEqualToString:@"fullPhotoSegue"])
+    {
+        FullPhotoViewController *vc = [segue destinationViewController];
+        vc.photoURL = selPhoto;
     }
 }
 - (IBAction)ReviewViewAllClicked:(id)sender {

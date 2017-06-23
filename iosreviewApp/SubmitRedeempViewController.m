@@ -25,6 +25,7 @@
 @interface SubmitRedeempViewController ()
 {
     Preference *pref;
+    NSMutableArray *countryNames ;
 }
 @end
 
@@ -46,6 +47,59 @@
     }
     
     pref = [Preference getInstance];
+    [self getCountry];
+}
+
+-(void)getCountry
+{
+    [utility showProgressDialog:self];
+    
+    NSURL *URL = [NSURL URLWithString:API_POST_GET_COUNTRY];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"userId",
+                                nil];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager POST:URL.absoluteString parameters:parameters progress:nil success:^(NSURLSessionDataTask * task, id  responseObject) {
+        
+        [utility hideProgressDialog];
+        if (responseObject == nil) {
+            return;
+        }
+        else {
+            NSError *error = nil;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+            @try {
+                NSArray *countryInfo = [json objectForKey:@"data"];
+                NSArray *countries = [countryInfo[0] objectForKey:@"category"];
+                
+                countryNames = [[NSMutableArray alloc] init];
+                
+                for(NSDictionary *country in countries)
+                {
+//                    NSString *country_data = [country objectForKey:@"country"];
+                    [countryNames addObject:[country objectForKey:@"country"]];
+                }
+                if([countryNames count] == 0)
+                    return;
+                
+                if(![[countryNames objectAtIndex:0] isEqualToString:@""])
+                    _countryLabel.text = [countryNames objectAtIndex:0];
+            }
+            @catch (NSException *e) {
+                NSLog(@"responseInvoiceList - JSONException : %@", e.reason);
+            }
+            
+        }
+    } failure:^(NSURLSessionDataTask  *task, NSError  *error) {
+        
+        [utility hideProgressDialog];
+        [[AppDelegate sharedAppDelegate] showToastMessage:error.localizedDescription];
+        
+    }];
+    
+    
 }
 
 - (IBAction)submitClicked:(id)sender {
@@ -67,10 +121,6 @@
         return;
     }
     
-    // country validateion
-    if([_country.text length] == 0)
-        return;
-    
     [self sendinfo];
     
 }
@@ -87,8 +137,8 @@
                                 _mobile.text, @"mobile",
                                 _Address.text, @"address",
                                 _city.text, @"city",
-                                _pincode.text, @"pincode",
-                                _country.text, @"country",
+                                _pincode.text, "pincode",
+                                _countryLabel.text, @"country",
                                 nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -119,12 +169,14 @@
     
 
 }
+
 - (IBAction)searchClicked:(id)sender {
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SearchViewController * controller = (SearchViewController *)[storyboard instantiateViewControllerWithIdentifier:@"searchview"];
-    [self presentViewController:controller animated:NO completion:nil];
+    [self.navigationController pushViewController: controller animated:YES];
 }
+
 - (IBAction)contactClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
@@ -133,10 +185,57 @@
     
     [self presentViewController:controller animated:NO completion:nil];
 }
+
 - (IBAction)barcodeClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ScanController * controller = (ScanController *)[storyboard instantiateViewControllerWithIdentifier:@"barcodeview"];
-    [self presentViewController:controller animated:NO completion:nil];
+    [self.navigationController pushViewController: controller animated:YES];
+}
+#pragma mark FYComboBoxDelegate
+
+- (NSInteger)comboBoxNumberOfRows:(FYComboBox *)comboBox
+{
+    if (comboBox == self.fyCountryBtn) {
+        return self->countryNames.count;
+    }
+    
+    return 0;
+}
+
+- (NSString *)comboBox:(FYComboBox *)comboBox titleForRow:(NSInteger)row
+{
+    if (comboBox == self.fyCountryBtn) {
+        return self->countryNames[row];
+    }
+    
+    return 0;
+}
+
+- (void)comboBox:(FYComboBox *)comboBox didSelectRow:(NSInteger)row
+{
+    if (comboBox == self.fyCountryBtn) {
+        self.countryLabel.text = self->countryNames[row];
+    }
+    
+    [comboBox closeAnimated:YES];
+    
+}
+
+- (void)comboBox:(FYComboBox *)comboBox willOpenAnimated:(BOOL)animated
+{
+}
+
+- (void)comboBox:(FYComboBox *)comboBox didOpenAnimated:(BOOL)animated
+{
+}
+
+- (void)comboBox:(FYComboBox *)comboBox willCloseAnimated:(BOOL)animated
+{
+}
+
+- (void)comboBox:(FYComboBox *)comboBox didCloseAnimated:(BOOL)animated
+{
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSString *product_id;
 @property (nonatomic, retain) NSString *review;
 @property (nonatomic, retain) NSString *product_photo;
+@property (nonatomic, retain) NSString *ratevalue;
 
 
 @end

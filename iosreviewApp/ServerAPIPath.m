@@ -41,7 +41,8 @@ NSString *const API_POST_GET_RECENT_VIEW = {API_BASE_URL @"GetRecentView.php/?"}
 NSString *const API_POST_ADD_CLICK = {API_BASE_URL @"addclick.php/?"};
 NSString *const API_POST_ADD_NEWFRIENDS = {API_BASE_URL @"addnewfriend.php/?"};
 NSString *const API_POST_GET_SUGGESTED_FRIEND = {API_BASE_URL @"getSuggestedFriend.php/?"};
-
+NSString *const API_POST_GET_REVIEW_COMMENT = {API_BASE_URL @"GetCommentOnReview.php/?"};
+NSString *const API_POST_GET_COUNTRY = {API_BASE_URL @"GetCountry.php/?"};
 @implementation ServerAPIPath
 
 @end

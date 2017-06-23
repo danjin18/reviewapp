@@ -58,7 +58,7 @@
             NSError *error = nil;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
                 @try {
-                    _arrSurprise = [[surpriseModel alloc] init:json];
+                    _arrSurprise = [[surpriseModel alloc] init:[json objectForKey:@"Data"]];
                     [_myTable reloadData];
                 }
                 @catch (NSException *e) {

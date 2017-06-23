@@ -18,6 +18,8 @@
 
 #import "utility.h"
 #import "AppDelegate.h"
+#import "Preference.h"
+#import "Constants.h"
 
 #import "SWRevealViewController.h"
 
@@ -33,6 +35,7 @@
     NSMutableArray *searchText ;
     
     NSMutableArray *newProductModel;
+    Preference *pref;
 }
 @end
 
@@ -41,6 +44,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    pref = [Preference getInstance];
+    
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
     {
@@ -69,7 +74,7 @@
     
     
     NSURL *URL = [NSURL URLWithString:API_POSTPRODUCT_LIST];
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_category_id, @"category_id", nil];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_category_id, @"category_id", [pref getSharedPreference:nil :PREF_PARAM_COUNTRY :@""], @"country", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -316,7 +321,7 @@
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SearchViewController * controller = (SearchViewController *)[storyboard instantiateViewControllerWithIdentifier:@"searchview"];
-    [self presentViewController:controller animated:NO completion:nil];
+    [self.navigationController pushViewController: controller animated:YES];
 }
 - (IBAction)contactClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -329,7 +334,7 @@
 - (IBAction)barcodeClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ScanController * controller = (ScanController *)[storyboard instantiateViewControllerWithIdentifier:@"barcodeview"];
-    [self presentViewController:controller animated:NO completion:nil];
+    [self.navigationController pushViewController: controller animated:YES];
 }
 + (void)setPresentationStyleForSelfController:(UIViewController *)selfController presentingController:(UIViewController *)presentingController
 {

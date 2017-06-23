@@ -82,7 +82,7 @@
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
 
                 @try {
-                    _arrSurprise = [[surpriseModel alloc] init:json];
+                    _arrSurprise = [[surpriseModel alloc] init:[json objectForKey:@"Data"]];
                     [_myTable reloadData];
                 }
                 @catch (NSException *e) {
@@ -130,6 +130,7 @@
     {
         // Your code here
     }
+    [sender setTitle:@"Redeemed" forState:UIControlStateDisabled];
     redeem_row = sender.tag;
     [self performSegueWithIdentifier:@"redeemSegue" sender:self];
 }

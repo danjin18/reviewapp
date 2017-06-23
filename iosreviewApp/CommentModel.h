@@ -15,6 +15,9 @@
 @property (nonatomic, retain) NSMutableArray *product_photo;
 
 -(id)init:(NSDictionary*)jsonObject;
+-(id)initComment:(NSDictionary*)jsonObject;
+
 -(void) initWithJsonObject:(NSDictionary*)jsonObject;
+-(void) initWithAddCommentJsonObject:(NSDictionary*)jsonObject;
 
 @end

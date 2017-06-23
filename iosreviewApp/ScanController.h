@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ScanController : UIViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *rightbarButton;
 
 @end

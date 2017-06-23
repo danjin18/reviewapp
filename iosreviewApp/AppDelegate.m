@@ -337,10 +337,11 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 - (void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     NSLog(@"This is Device Toekn");
     if (isDev) {
-        [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
-        
+//        [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
+        [FIRMessaging messaging].APNSToken = deviceToken;
     }else{
-        [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeProd];
+//        [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeProd];
+        [FIRMessaging messaging].APNSToken = deviceToken;
     }
     
 }

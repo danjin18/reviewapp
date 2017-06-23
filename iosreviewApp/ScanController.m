@@ -7,6 +7,10 @@
 //
 
 #import "ScanController.h"
+#import "SWRevealViewController.h"
+#import "SearchViewController.h"
+#import "ContactViewController.h"
+
 #import <AVFoundation/AVFoundation.h>
 
 @interface ScanController () <AVCaptureMetadataOutputObjectsDelegate>
@@ -23,6 +27,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if ( revealViewController )
+    {
+        [self.sidebarButton setTarget: self.revealViewController];
+        [self.sidebarButton setAction: @selector( revealToggle: )];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        
+        [self.rightbarButton setTarget: self.revealViewController];
+        [self.rightbarButton setAction: @selector( rightRevealToggle: )];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
     [self setupScanningSession];
 }
 
@@ -118,6 +133,24 @@
             }
         }
     }
+}
+
+- (IBAction)searchClicked:(id)sender {
+    
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SearchViewController * controller = (SearchViewController *)[storyboard instantiateViewControllerWithIdentifier:@"searchview"];
+    [self presentViewController:controller animated:NO completion:nil];
+}
+- (IBAction)contactClicked:(id)sender {
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
+    
+    controller.modalPresentationStyle =  UIModalPresentationOverCurrentContext;
+    
+    [self presentViewController:controller animated:NO completion:nil];
+}
+- (IBAction)barcodeClicked:(id)sender {
+
 }
 
 @end

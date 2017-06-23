@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BBC3475FD23A0FF5A78777FF /* libPods-iosreviewApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 588A86E41FE4E820BBE50939 /* libPods-iosreviewApp.a */; };
+		1C03F5FBDB36080E65341475 /* libPods-iosreviewApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C8C56C55F259C8CEAA6524 /* libPods-iosreviewApp.a */; };
 		F80F536A1ED3E48100C999CD /* ServerAPIPath.m in Sources */ = {isa = PBXBuildFile; fileRef = F80F53691ED3E48000C999CD /* ServerAPIPath.m */; };
 		F80F536D1ED4131100C999CD /* RecentCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80F536C1ED4131000C999CD /* RecentCategoryViewController.m */; };
 		F80F53701ED4AB9100C999CD /* reviewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F80F536F1ED4AB8F00C999CD /* reviewModel.m */; };
@@ -33,6 +33,12 @@
 		F80F53B91ED7920E00C999CD /* PriceDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80F53B71ED7920C00C999CD /* PriceDialogViewController.m */; };
 		F80F53BA1ED7920E00C999CD /* PriceDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F80F53B81ED7920C00C999CD /* PriceDialogViewController.xib */; };
 		F80F53BD1ED7F96600C999CD /* PriceAlertDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80F53BC1ED7F96600C999CD /* PriceAlertDialogViewController.m */; };
+		F8110E6A1EF188080023D26D /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8110E641EF188080023D26D /* libAFNetworking.a */; };
+		F8110E6B1EF188080023D26D /* libGoogleToolboxForMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8110E651EF188080023D26D /* libGoogleToolboxForMac.a */; };
+		F8110E6C1EF188080023D26D /* libGTMOAuth2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8110E661EF188080023D26D /* libGTMOAuth2.a */; };
+		F8110E6D1EF188080023D26D /* libGTMSessionFetcher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8110E671EF188080023D26D /* libGTMSessionFetcher.a */; };
+		F8110E6E1EF188080023D26D /* libPods-iosreviewApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8110E681EF188080023D26D /* libPods-iosreviewApp.a */; };
+		F8110E6F1EF188080023D26D /* libProtobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8110E691EF188080023D26D /* libProtobuf.a */; };
 		F811F53B1EDBD06900484FD1 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F811F53A1EDBD06900484FD1 /* EditProfileViewController.m */; };
 		F811F53E1EDBDC4E00484FD1 /* SettingFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F811F53D1EDBDC4E00484FD1 /* SettingFriendViewController.m */; };
 		F811F5411EDBDDB200484FD1 /* MyReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F811F5401EDBDDB200484FD1 /* MyReviewViewController.m */; };
@@ -56,6 +62,8 @@
 		F819FA951EE0D9D900EB233F /* promotionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F819FA941EE0D9D800EB233F /* promotionModel.m */; };
 		F81DCAE61EEF8DAC00BF2BAA /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = F81DCAE51EEF8DAC00BF2BAA /* next.png */; };
 		F81DCAE81EEF8F3400BF2BAA /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = F81DCAE71EEF8F3400BF2BAA /* back.png */; };
+		F81DCAEB1EF0881500BF2BAA /* ServerAPICall.m in Sources */ = {isa = PBXBuildFile; fileRef = F81DCAEA1EF0881500BF2BAA /* ServerAPICall.m */; };
+		F81DCAEE1EF0942900BF2BAA /* UIImageResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = F81DCAED1EF0942900BF2BAA /* UIImageResizing.m */; };
 		F821D3F51EDF5DBC004EBD30 /* MyFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F821D3F41EDF5DBC004EBD30 /* MyFriendViewController.m */; };
 		F821D3F91EDF5EBB004EBD30 /* MyFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F821D3F71EDF5EBB004EBD30 /* MyFriendTableViewCell.m */; };
 		F821D3FA1EDF5EBB004EBD30 /* MyFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F821D3F81EDF5EBB004EBD30 /* MyFriendTableViewCell.xib */; };
@@ -81,6 +89,8 @@
 		F82A74C11EEA8B7200FDC6B6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A74C01EEA8B7200FDC6B6 /* FBSDKCoreKit.framework */; };
 		F82A74C31EEA8B8100FDC6B6 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A74C21EEA8B8100FDC6B6 /* FBSDKShareKit.framework */; };
 		F82A74C51EEA8BAE00FDC6B6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A74C41EEA8BAE00FDC6B6 /* FBSDKLoginKit.framework */; };
+		F82BB58E1EF8AF46006052D8 /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F82BB58D1EF8AF46006052D8 /* AddCommentViewController.m */; };
+		F82BB5911EF8AF64006052D8 /* AddImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F82BB5901EF8AF64006052D8 /* AddImageViewController.m */; };
 		F83DB2651EE5065F0022F778 /* SendReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F83DB2641EE5065F0022F778 /* SendReviewViewController.m */; };
 		F84538671ED8A84A008EC97C /* FullPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F84538661ED8A84A008EC97C /* FullPhotoViewController.m */; };
 		F845386A1ED8AA36008EC97C /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F84538691ED8AA36008EC97C /* ProductDetailViewController.m */; };
@@ -199,7 +209,7 @@
 
 /* Begin PBXFileReference section */
 		1D70AB34E9FBA52C38280E57 /* Pods-iosreviewApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosreviewApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosreviewApp/Pods-iosreviewApp.debug.xcconfig"; sourceTree = "<group>"; };
-		588A86E41FE4E820BBE50939 /* libPods-iosreviewApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosreviewApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75C8C56C55F259C8CEAA6524 /* libPods-iosreviewApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosreviewApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D555BB03E18EB9BE8625D417 /* Pods-iosreviewApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosreviewApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosreviewApp/Pods-iosreviewApp.release.xcconfig"; sourceTree = "<group>"; };
 		F80F53681ED3E48000C999CD /* ServerAPIPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAPIPath.h; sourceTree = "<group>"; };
 		F80F53691ED3E48000C999CD /* ServerAPIPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAPIPath.m; sourceTree = "<group>"; };
@@ -241,6 +251,12 @@
 		F80F53B81ED7920C00C999CD /* PriceDialogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PriceDialogViewController.xib; sourceTree = "<group>"; };
 		F80F53BB1ED7F96500C999CD /* PriceAlertDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceAlertDialogViewController.h; sourceTree = "<group>"; };
 		F80F53BC1ED7F96600C999CD /* PriceAlertDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceAlertDialogViewController.m; sourceTree = "<group>"; };
+		F8110E641EF188080023D26D /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "Pods/../build/Debug-iphoneos/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
+		F8110E651EF188080023D26D /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleToolboxForMac.a; path = "Pods/../build/Debug-iphoneos/GoogleToolboxForMac/libGoogleToolboxForMac.a"; sourceTree = "<group>"; };
+		F8110E661EF188080023D26D /* libGTMOAuth2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTMOAuth2.a; path = "Pods/../build/Debug-iphoneos/GTMOAuth2/libGTMOAuth2.a"; sourceTree = "<group>"; };
+		F8110E671EF188080023D26D /* libGTMSessionFetcher.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGTMSessionFetcher.a; path = "Pods/../build/Debug-iphoneos/GTMSessionFetcher/libGTMSessionFetcher.a"; sourceTree = "<group>"; };
+		F8110E681EF188080023D26D /* libPods-iosreviewApp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-iosreviewApp.a"; path = "Pods/../build/Debug-iphoneos/libPods-iosreviewApp.a"; sourceTree = "<group>"; };
+		F8110E691EF188080023D26D /* libProtobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libProtobuf.a; path = "Pods/../build/Debug-iphoneos/Protobuf/libProtobuf.a"; sourceTree = "<group>"; };
 		F811F5391EDBD06900484FD1 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		F811F53A1EDBD06900484FD1 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		F811F53C1EDBDC4E00484FD1 /* SettingFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingFriendViewController.h; sourceTree = "<group>"; };
@@ -284,6 +300,10 @@
 		F819FA941EE0D9D800EB233F /* promotionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = promotionModel.m; sourceTree = "<group>"; };
 		F81DCAE51EEF8DAC00BF2BAA /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		F81DCAE71EEF8F3400BF2BAA /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		F81DCAE91EF0881500BF2BAA /* ServerAPICall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAPICall.h; sourceTree = "<group>"; };
+		F81DCAEA1EF0881500BF2BAA /* ServerAPICall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAPICall.m; sourceTree = "<group>"; };
+		F81DCAEC1EF0942900BF2BAA /* UIImageResizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageResizing.h; sourceTree = "<group>"; };
+		F81DCAED1EF0942900BF2BAA /* UIImageResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageResizing.m; sourceTree = "<group>"; };
 		F821D3F31EDF5DBC004EBD30 /* MyFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendViewController.h; sourceTree = "<group>"; };
 		F821D3F41EDF5DBC004EBD30 /* MyFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendViewController.m; sourceTree = "<group>"; };
 		F821D3F61EDF5EBB004EBD30 /* MyFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendTableViewCell.h; sourceTree = "<group>"; };
@@ -327,6 +347,10 @@
 		F82A74C01EEA8B7200FDC6B6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		F82A74C21EEA8B8100FDC6B6 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		F82A74C41EEA8BAE00FDC6B6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		F82BB58C1EF8AF46006052D8 /* AddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommentViewController.h; sourceTree = "<group>"; };
+		F82BB58D1EF8AF46006052D8 /* AddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewController.m; sourceTree = "<group>"; };
+		F82BB58F1EF8AF64006052D8 /* AddImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddImageViewController.h; sourceTree = "<group>"; };
+		F82BB5901EF8AF64006052D8 /* AddImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddImageViewController.m; sourceTree = "<group>"; };
 		F83DB2631EE5065F0022F778 /* SendReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendReviewViewController.h; sourceTree = "<group>"; };
 		F83DB2641EE5065F0022F778 /* SendReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendReviewViewController.m; sourceTree = "<group>"; };
 		F84538651ED8A84A008EC97C /* FullPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullPhotoViewController.h; sourceTree = "<group>"; };
@@ -496,6 +520,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8110E6A1EF188080023D26D /* libAFNetworking.a in Frameworks */,
+				F8110E6B1EF188080023D26D /* libGoogleToolboxForMac.a in Frameworks */,
+				F8110E6C1EF188080023D26D /* libGTMOAuth2.a in Frameworks */,
+				F8110E6D1EF188080023D26D /* libGTMSessionFetcher.a in Frameworks */,
+				F8110E6E1EF188080023D26D /* libPods-iosreviewApp.a in Frameworks */,
+				F8110E6F1EF188080023D26D /* libProtobuf.a in Frameworks */,
 				F82A74C31EEA8B8100FDC6B6 /* FBSDKShareKit.framework in Frameworks */,
 				F8AA8A8C1ECFAA7F001B1ACA /* UIKit.framework in Frameworks */,
 				F82A74C51EEA8BAE00FDC6B6 /* FBSDKLoginKit.framework in Frameworks */,
@@ -504,7 +534,7 @@
 				F8AA8A821ECF95EA001B1ACA /* Foundation.framework in Frameworks */,
 				F82A74C11EEA8B7200FDC6B6 /* FBSDKCoreKit.framework in Frameworks */,
 				F8AA8B4B1ED01094001B1ACA /* Bolts.framework in Frameworks */,
-				BBC3475FD23A0FF5A78777FF /* libPods-iosreviewApp.a in Frameworks */,
+				1C03F5FBDB36080E65341475 /* libPods-iosreviewApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +569,10 @@
 			children = (
 				F80F53681ED3E48000C999CD /* ServerAPIPath.h */,
 				F80F53691ED3E48000C999CD /* ServerAPIPath.m */,
+				F81DCAE91EF0881500BF2BAA /* ServerAPICall.h */,
+				F81DCAEA1EF0881500BF2BAA /* ServerAPICall.m */,
+				F81DCAEC1EF0942900BF2BAA /* UIImageResizing.h */,
+				F81DCAED1EF0942900BF2BAA /* UIImageResizing.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -786,6 +820,10 @@
 				F82A74BD1EE9D75B00FDC6B6 /* ExternalLinkViewController.m */,
 				F8140CE51EED0FC500C19276 /* PriceAlertDialogViewController.h */,
 				F8140CE21EED0FAC00C19276 /* PriceAlertDialogViewController.m */,
+				F82BB58C1EF8AF46006052D8 /* AddCommentViewController.h */,
+				F82BB58D1EF8AF46006052D8 /* AddCommentViewController.m */,
+				F82BB58F1EF8AF64006052D8 /* AddImageViewController.h */,
+				F82BB5901EF8AF64006052D8 /* AddImageViewController.m */,
 			);
 			path = iosreviewApp;
 			sourceTree = "<group>";
@@ -836,6 +874,12 @@
 		F8AA8A801ECF95E9001B1ACA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8110E641EF188080023D26D /* libAFNetworking.a */,
+				F8110E651EF188080023D26D /* libGoogleToolboxForMac.a */,
+				F8110E661EF188080023D26D /* libGTMOAuth2.a */,
+				F8110E671EF188080023D26D /* libGTMSessionFetcher.a */,
+				F8110E681EF188080023D26D /* libPods-iosreviewApp.a */,
+				F8110E691EF188080023D26D /* libProtobuf.a */,
 				F82A74C41EEA8BAE00FDC6B6 /* FBSDKLoginKit.framework */,
 				F82A74C21EEA8B8100FDC6B6 /* FBSDKShareKit.framework */,
 				F82A74C01EEA8B7200FDC6B6 /* FBSDKCoreKit.framework */,
@@ -844,7 +888,7 @@
 				F8AA8A8B1ECFAA7F001B1ACA /* UIKit.framework */,
 				F8AA8A891ECFAA6B001B1ACA /* CoreGraphics.framework */,
 				F8AA8A811ECF95EA001B1ACA /* Foundation.framework */,
-				588A86E41FE4E820BBE50939 /* libPods-iosreviewApp.a */,
+				75C8C56C55F259C8CEAA6524 /* libPods-iosreviewApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1086,7 +1130,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Keychain = {
 								enabled = 0;
@@ -1285,6 +1329,7 @@
 				F8AA8B051ED0031B001B1ACA /* MBProgressHUD.m in Sources */,
 				F80F53B01ED6495300C999CD /* ProductTableViewCell.m in Sources */,
 				F81540051EE1FB9700744353 /* RecentProductViewController.m in Sources */,
+				F82BB58E1EF8AF46006052D8 /* AddCommentViewController.m in Sources */,
 				F8AA8B5D1ED2728A001B1ACA /* PhotoCollectionViewCell.m in Sources */,
 				F8AA8A4E1ECF9526001B1ACA /* AppDelegate.m in Sources */,
 				F84AAC811EE3089C00D3053B /* NSBundle+Language.m in Sources */,
@@ -1293,11 +1338,13 @@
 				F84538671ED8A84A008EC97C /* FullPhotoViewController.m in Sources */,
 				F8BB27F81EE13200001B2D1A /* redeempModel.m in Sources */,
 				F811F5441EDBEABA00484FD1 /* MyReviewDetailViewController.m in Sources */,
+				F82BB5911EF8AF64006052D8 /* AddImageViewController.m in Sources */,
 				F8AA8A4B1ECF9526001B1ACA /* main.m in Sources */,
 				F821D4011EDF6ECA004EBD30 /* SettingReviewTableViewCell.m in Sources */,
 				F819FA911EE0D79A00EB233F /* PromotionTableViewCell.m in Sources */,
 				F827B93E1EDCCB9B00E31D40 /* MyEditProfileViewController.m in Sources */,
 				F80F53B41ED679B000C999CD /* productModel.m in Sources */,
+				F81DCAEE1EF0942900BF2BAA /* UIImageResizing.m in Sources */,
 				F8140CE11EECCBFA00C19276 /* RateViewController.m in Sources */,
 				F821D4051EDF731B004EBD30 /* SettingReviewViewController.m in Sources */,
 				F827B9411EDCCBB800E31D40 /* ChangePasswordViewController.m in Sources */,
@@ -1361,6 +1408,7 @@
 				F86F48E31ED39FAE0054401E /* HCSStarRatingView.m in Sources */,
 				F8BB280C1EE15487001B2D1A /* HistoryTableViewCell.m in Sources */,
 				F84AACAB1EE35B2100D3053B /* ViewPagerController.m in Sources */,
+				F81DCAEB1EF0881500BF2BAA /* ServerAPICall.m in Sources */,
 				F827B94A1EDD1FB300E31D40 /* CouponViewController.m in Sources */,
 				F845386A1ED8AA36008EC97C /* ProductDetailViewController.m in Sources */,
 				F84AAC961EE3220800D3053B /* FYComboBox.m in Sources */,
@@ -1540,6 +1588,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iosreviewApp/iosreviewApp.entitlements;
 				DEVELOPMENT_TEAM = SLAZA434E6;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1547,8 +1596,18 @@
 				INFOPLIST_FILE = iosreviewApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GoogleToolboxForMac",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GTMOAuth2",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GTMSessionFetcher",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Protobuf",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reviewapp.ios.iosreviewApps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1559,6 +1618,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iosreviewApp/iosreviewApp.entitlements;
 				DEVELOPMENT_TEAM = SLAZA434E6;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1566,8 +1626,18 @@
 				INFOPLIST_FILE = iosreviewApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GoogleToolboxForMac",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GTMOAuth2",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GTMSessionFetcher",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Protobuf",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reviewapp.ios.iosreviewApps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

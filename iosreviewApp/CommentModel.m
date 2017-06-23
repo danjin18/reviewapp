@@ -17,7 +17,14 @@
     
     return self;
 }
-
+-(id)initComment:(NSDictionary*)jsonObject
+{
+    if((self = [super init]) != nil ) {
+        [self initWithAddCommentJsonObject:jsonObject];
+    }
+    
+    return self;
+}
 -(void) initWithJsonObject:(NSDictionary*)jsonObject
 {
     NSArray *comment = (NSArray *)jsonObject;
@@ -33,4 +40,19 @@
     }
 }
 
+-(void) initWithAddCommentJsonObject:(NSDictionary*)jsonObject
+{
+    NSArray *comment = (NSArray *)jsonObject;
+    
+    self.product_title = [[NSMutableArray alloc] init];
+    self.product_photo = [[NSMutableArray alloc] init];
+    self.product_comment = [[NSMutableArray alloc] init];
+    
+    for(NSDictionary *obj in comment) {
+        [self.product_comment addObject:[obj objectForKey:@"comment"]];
+        NSDictionary *jsonUser = [obj objectForKey:@"userDetail"];
+        [self.product_title addObject:[jsonUser objectForKey:@"firstname"]];
+        [self.product_photo addObject:[jsonUser objectForKey:@"user_image"]];
+    }
+}
 @end

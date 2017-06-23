@@ -21,6 +21,7 @@ extern NSString *const PREF_PARAM_USER_PASSWORD;
 extern NSString *const PREF_PARAM_CATEGORY;
 extern NSString *const PREF_PARAM_CATEGORY_ID;
 extern NSString *const PREF_PARAM_TOKEN;
+extern NSString *const PREF_PARAM_COUNTRY;
 //user info
 
 

@@ -43,7 +43,7 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
-    globalTimer = 60;
+    globalTimer = 120;
     [self startTimer];
 }
 
@@ -85,7 +85,7 @@
 - (void)updateCircularProgressBar
 {
     // Values to be passed on to Circular Progress Bar
-    if (globalTimer > 0 && globalTimer <= 1200) {
+    if (globalTimer > 0 && globalTimer <= 120) {
         globalTimer--;
         minutesLeft = globalTimer / 60;
         secondsLeft = globalTimer % 60;
@@ -100,7 +100,7 @@
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SearchViewController * controller = (SearchViewController *)[storyboard instantiateViewControllerWithIdentifier:@"searchview"];
-    [self presentViewController:controller animated:NO completion:nil];
+    [self.navigationController pushViewController: controller animated:YES];
 }
 - (IBAction)contactClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -113,7 +113,7 @@
 - (IBAction)barcodeClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ScanController * controller = (ScanController *)[storyboard instantiateViewControllerWithIdentifier:@"barcodeview"];
-    [self presentViewController:controller animated:NO completion:nil];
+    [self.navigationController pushViewController: controller animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

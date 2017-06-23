@@ -23,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [_email setLeftViewMode:UITextFieldViewModeAlways];
+    _email.leftView= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leftusername.png"]];
 }
 - (IBAction)next:(id)sender {
     if(![utility isValidEmail:_email.text]) {

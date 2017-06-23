@@ -23,6 +23,7 @@ NSString *const PREF_PARAM_USER_PASSWORD = @"user_age";
 NSString *const PREF_PARAM_CATEGORY = @"category";
 NSString *const PREF_PARAM_CATEGORY_ID = @"category_id";
 NSString *const PREF_PARAM_TOKEN = @"token";
+NSString *const PREF_PARAM_COUNTRY = @"country";
 
 @implementation Constants
 

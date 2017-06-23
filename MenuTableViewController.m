@@ -38,7 +38,7 @@
         menuItems = [NSArray arrayWithObjects:@"profile", @"Home", @"Notifications", @"MyProfile", @"Friends", @"MyReviews", @"RecentVisit", @"RatetheApp", @"Settings", @"Redeemption", @"Promotion", @"FAQ", @"DailySurprised", @"Logout", nil];
     }
     else{
-        menuItems = [NSArray arrayWithObjects:@"profile", @"Home",  @"FAQ", @"Logout", nil];
+        menuItems = [NSArray arrayWithObjects: @"Home",  @"FAQ", @"Logout", nil];
     }
     
 }

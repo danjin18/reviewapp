@@ -8,15 +8,18 @@
 
 #import "ReviewAllTableViewController.h"
 #import "SWRevealViewController.h"
+#import "FullPhotoViewController.h"
 #import "ContactViewController.h"
 #import "SearchViewController.h"
 #import "ScanController.h"
 
 #import "categoryTableViewCell.h"
 
+#import "ProductDetailViewController.h"
 @interface ReviewAllTableViewController ()
 {
     int selected_row;
+    NSString *selPhoto;
 }
 @end
 
@@ -55,7 +58,22 @@
     [cell setRatevalueCell:review];
     [cell setCountCell:totalReviewCount];
     
+    cell.category_image.userInteractionEnabled = YES;
+    cell.category_image.tag = indexPath.row;
+    
+    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullPhoto:)];
+    tapped.numberOfTapsRequired = 1;
+    [cell.category_image addGestureRecognizer:tapped];
+    
     return cell;
+}
+
+-(void)fullPhoto :(id) sender
+{
+    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *) sender;
+    selPhoto = [self.arrAllReview.primary_photos objectAtIndex:gesture.view.tag];
+    
+    [self performSegueWithIdentifier:@"fullPhotoSegue" sender:self];
 }
 
 - (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section
@@ -72,13 +90,15 @@
 {
     [_tableView deselectRowAtIndexPath:indexPath animated:NO];
     selected_row = (int)indexPath.row;
+    
+    [self performSegueWithIdentifier:@"detailSegue" sender:self];
 }
 
 - (IBAction)searchClicked:(id)sender {
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SearchViewController * controller = (SearchViewController *)[storyboard instantiateViewControllerWithIdentifier:@"searchview"];
-    [self presentViewController:controller animated:NO completion:nil];
+    [self.navigationController pushViewController: controller animated:YES];
 }
 - (IBAction)contactClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -91,7 +111,7 @@
 - (IBAction)barcodeClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ScanController * controller = (ScanController *)[storyboard instantiateViewControllerWithIdentifier:@"barcodeview"];
-    [self presentViewController:controller animated:NO completion:nil];
+    [self.navigationController pushViewController: controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,14 +119,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if([[segue identifier] isEqualToString:@"detailSegue"])
+    {
+        ProductDetailViewController *vc = [segue destinationViewController];
+        vc.product_id = [_arrAllReview.product_id objectAtIndex:selected_row];
+        vc.category_id = [_arrAllReview.category_id objectAtIndex:selected_row];
+        vc.product_photoval = [_arrAllReview.primary_photos objectAtIndex:selected_row];
+        vc.product_title = [_arrAllReview.name objectAtIndex:selected_row];
+        vc.product_rateval = [_arrAllReview.review objectAtIndex:selected_row];
+        vc.review_count = [_arrAllReview.totalReviewCount objectAtIndex:selected_row];
+    }
+    if([[segue identifier] isEqualToString:@"fullPhotoSegue"])
+    {
+        FullPhotoViewController *vc = [segue destinationViewController];
+        vc.photoURL = selPhoto;
+    }
 }
-*/
+
 
 @end

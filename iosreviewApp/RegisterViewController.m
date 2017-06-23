@@ -22,6 +22,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [_email setLeftViewMode:UITextFieldViewModeAlways];
+    _email.leftView= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leftusername.png"]];
+    
+    [_password setLeftViewMode:UITextFieldViewModeAlways];
+    _password.leftView= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leftpassword.png"]];
+    
+    [_confirmpassword setLeftViewMode:UITextFieldViewModeAlways];
+    _confirmpassword.leftView= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leftpassword.png"]];
+    
+    [_phonenumber setLeftViewMode:UITextFieldViewModeAlways];
+    _phonenumber.leftView= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"phone.png"]];
 }
 - (IBAction)register:(id)sender {
     if([_firstname.text isEqualToString:@""]) {

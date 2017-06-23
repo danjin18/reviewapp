@@ -7,8 +7,11 @@
 //
 
 #import "LanguageViewController.h"
+#import "LoginViewController.h"
 #import "LanguageManager.h"
 #import "AppDelegate.h"
+
+#import "Constants.h"
 
 @interface LanguageViewController ()
 {
@@ -25,10 +28,10 @@
     // Do any additional setup after loading the view.
     
     countryNames = [[NSMutableArray alloc] initWithObjects:
-                                  @"singapore",
-                                  @"malaysia",
-                                  @"philipines",
-                                  @"AAustralia",
+                                  @"Singapore",
+                                  @"Malaysia",
+                                  @"Philippines",
+                                  @"Australia",
                                   @"China",
                                   nil];
     
@@ -39,6 +42,7 @@
                                  @"Chinese",
                                  nil];
     _langLabel.text = [langNames objectAtIndex:[LanguageManager currentLanguageIndex]];
+    _countryLabel.text = [countryNames objectAtIndex:[LanguageManager currentLanguageIndex]];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -113,7 +117,6 @@
 }
 
 - (IBAction)onNext:(id)sender {
-    
     [self performSegueWithIdentifier:@"languageSegue" sender:nil];
 }
 - (void)reloadRootViewController
@@ -123,14 +126,19 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     delegate.window.rootViewController = [storyboard instantiateInitialViewController];
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([[segue identifier] isEqualToString:@"languageSegue"])
+    {
+        LoginViewController *vc = [segue destinationViewController];
+        vc.country = self.countryLabel.text;
+    }
 }
-*/
+
 
 @end

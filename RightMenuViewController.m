@@ -25,6 +25,8 @@
     // Do any additional setup after loading the view.
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _arrCategory = [userDefaults objectForKey:PREF_PARAM_CATEGORY];
+    
+    _arrCategory = [_arrCategory sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 - (void)didReceiveMemoryWarning {

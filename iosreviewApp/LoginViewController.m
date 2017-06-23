@@ -111,6 +111,7 @@
                 
                 [pref putSharedPreference:nil :PREF_PARAM_USER_ID :[userinfo objectForKey:@"id"]];
                 [pref putSharedPreference:nil :PREF_PARAM_USER_POINT :[userinfo objectForKey:@"point"]];
+                [pref putSharedPreference:nil :PREF_PARAM_COUNTRY :_country];
                 
                 [pref settedLogin:TRUE];
                 
@@ -130,6 +131,9 @@
 }
 
 - (IBAction)facebookLoginClicked:(id)sender {
+    Preference* pref = [Preference getInstance];
+    [pref putSharedPreference:nil :PREF_PARAM_COUNTRY :_country];
+    
     [[FacebookUtils getInstance] connectToFacebook:self];
  }
 
@@ -146,8 +150,9 @@
                                 @"custom",@"connect",
                                 _password.text,@"password",
                                 _email.text,@"emailID",
-                                @"android",@"device_type",
+                                @"iphone",@"device_type",
                                 @"", @"device_token",
+                                _country, @"country",
                                 nil];
     
     NSURL *URL = [NSURL URLWithString:API_POST_LOGIN];
@@ -178,6 +183,7 @@
                 [pref putSharedPreference:nil :PREF_PARAM_USER_PHONE :[userinfo objectForKey:@"phone"]];
                 [pref putSharedPreference:nil :PREF_PARAM_USER_POINT :[userinfo objectForKey:@"point"]];
                 [pref putSharedPreference:nil :PREF_PARAM_USER_PASSWORD :_password.text];
+                [pref putSharedPreference:nil :PREF_PARAM_COUNTRY :_country];
                 
                 [pref settedLogin:TRUE];
                 [self performSegueWithIdentifier:@"signinSegue" sender:nil];
