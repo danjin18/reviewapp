@@ -13,7 +13,7 @@
 
 #import "MBProgressHUD.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, FIRMessagingDelegate, GIDSignInDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GIDSignInDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

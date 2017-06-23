@@ -16,6 +16,9 @@
 #import "AppDelegate.h"
 
 @interface LoginViewController ()
+{
+    NSString *fcm_token;
+}
 @property (weak, nonatomic) IBOutlet UIButton *facebookLoginButton;
 
 @end
@@ -43,6 +46,7 @@
     _password.text = @"aaaaa";
     
     Preference* pref = [Preference getInstance];
+    fcm_token = [pref getSharedPreference:nil :PREF_PARAM_TOKEN :@""];
     [pref removeSharedPreference];
     [pref settedLogin:FALSE];
     
@@ -151,7 +155,7 @@
                                 _password.text,@"password",
                                 _email.text,@"emailID",
                                 @"iphone",@"device_type",
-                                @"", @"device_token",
+                                fcm_token, @"device_token",
                                 _country, @"country",
                                 nil];
     

@@ -141,7 +141,7 @@
     [utility showProgressDialog:self];
     
     
-    NSURL *URL = [NSURL URLWithString:API_POST_GET_REVIEW_COMMENT];
+    NSURL *URL = [NSURL URLWithString:API_POST_ADD_COMMENT_REVIEW];
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"user_id",
                                 _productID, @"product_id",
                                 _reviewID, @"product_review_id",
@@ -181,7 +181,9 @@
 }
 
 - (IBAction)addCommentClicked:(id)sender {
-    
+    if([_commentText.text isEqualToString:@""])
+        return;
+    [self addComment];
 }
 
 - (void)didReceiveMemoryWarning {

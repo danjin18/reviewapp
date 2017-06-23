@@ -11,5 +11,7 @@
 @interface AddImageViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightbarButton;
+@property (weak, nonatomic) IBOutlet UIImageView *photo;
 
+@property (nonatomic, retain) NSString *photoURL;
 @end

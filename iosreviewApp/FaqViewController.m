@@ -1,25 +1,22 @@
 //
-//  AddImageViewController.m
+//  FaqViewController.m
 //  iosreviewApp
 //
-//  Created by dan jin on 6/19/17.
+//  Created by dan jin on 5/28/17.
 //  Copyright © 2017 star. All rights reserved.
 //
-#import <MediaPlayer/MediaPlayer.h>
 
-#import "AddImageViewController.h"
+#import "FaqViewController.h"
 #import "ContactViewController.h"
 #import "SearchViewController.h"
 #import "ScanController.h"
 
 #import "SWRevealViewController.h"
-#import "UIImageView+AFNetworking.h"
-
-@interface AddImageViewController ()
+@interface FaqViewController ()
 
 @end
 
-@implementation AddImageViewController
+@implementation FaqViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,17 +32,12 @@
         [self.rightbarButton setAction: @selector( rightRevealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
-    _photo.image = nil;
-    NSURL *url = [NSURL URLWithString:_photoURL];
-    [_photo setImageWithURL:url];
-
+    
+    NSString *urlString = @"http://ansfy.com/reviewapp/webservice/faq.php";
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [_website loadRequest:urlRequest];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)searchClicked:(id)sender {
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -64,6 +56,10 @@
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ScanController * controller = (ScanController *)[storyboard instantiateViewControllerWithIdentifier:@"barcodeview"];
     [self.navigationController pushViewController: controller animated:YES];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 /*
