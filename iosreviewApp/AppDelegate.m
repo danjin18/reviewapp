@@ -15,6 +15,7 @@
 #define isDev YES
 
 @import Firebase;
+@import GoogleMobileAds;
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate , FIRMessagingDelegate>
 
@@ -30,6 +31,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
                              didFinishLaunchingWithOptions:launchOptions];
     
     [FIRApp configure];
+    [GADMobileAds configureWithApplicationID:@"ca-app-pub-9760873818563949~3622507875Ad"];
     [self configrationpush];
 //    [FIRMessaging messaging].delegate = self;
     

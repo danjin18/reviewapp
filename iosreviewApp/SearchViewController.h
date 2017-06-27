@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *productTable;
 
 @property (nonatomic, retain) productModel *productModel;
+@property (nonatomic, retain) NSString *barcodeText;
 @property (weak, nonatomic) IBOutlet UITextField *searchText;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;

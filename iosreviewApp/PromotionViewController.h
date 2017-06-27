@@ -17,6 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIView *LimitedTimeView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightbarButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *contactButton;
+
 
 @end

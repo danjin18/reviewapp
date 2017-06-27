@@ -26,8 +26,14 @@
 @property (weak, nonatomic) IBOutlet UIView *reviewView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightbarButton;
+@property (weak, nonatomic) IBOutlet UIButton *reviewBtn;
+@property (weak, nonatomic) IBOutlet UIButton *commentBtn;
+@property (weak, nonatomic) IBOutlet UIButton *EditorBtn;
 
 @property (nonatomic, retain) myReviewModel *reviewModel;
 @property (nonatomic, retain) CommentModel *commentModel;
 @property (nonatomic, retain) productModel *editorPickerModel;
+@property (nonatomic, retain) NSString *userid;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *userphoto;
 @end

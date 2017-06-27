@@ -18,6 +18,8 @@
 
 -(void)setProductPhotoCell:(NSString *)photoURL
 {
+    if((photoURL == nil) || ([photoURL isEqualToString:@""]))
+        return;
     _product_photo.image = nil;
     NSURL *url = [NSURL URLWithString:photoURL];
     [_product_photo setImageWithURL:url];

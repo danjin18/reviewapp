@@ -40,5 +40,17 @@
 {
     _review.text = [NSString stringWithFormat:@"%@  %@", _review.text, review];
 }
-
+-(void)setRedeemed:(NSString *)status
+{
+    if([status isEqualToString:@"1"])
+    {
+        _redeemBtn.hidden = YES;
+        _redeemedBtn.hidden = NO;
+        _redeemedBtn.enabled = FALSE;
+    }
+    else{
+        _redeemBtn.hidden = NO;
+        _redeemedBtn.hidden = YES;
+    }
+}
 @end

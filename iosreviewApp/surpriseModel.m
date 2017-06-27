@@ -29,6 +29,7 @@
     self.review = [[NSMutableArray alloc] init];
     self.sid = [[NSMutableArray alloc] init];
     self.points = [[NSMutableArray alloc] init];
+    self.status = [[NSMutableArray alloc] init];
     
     for(NSDictionary *obj in surprise) {
         [self.photo addObject:[obj objectForKey:@"image"]];
@@ -37,6 +38,7 @@
         [self.review addObject:[obj objectForKey:@"Description"]];
         [self.sid addObject:[obj objectForKey:@"sId"]];
         [self.points addObject:[obj objectForKey:@"points"]];
+        [self.status addObject:[obj objectForKey:@"status"]];
     }
 }
 

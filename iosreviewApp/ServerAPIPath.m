@@ -44,6 +44,8 @@ NSString *const API_POST_GET_SUGGESTED_FRIEND = {API_BASE_URL @"getSuggestedFrie
 NSString *const API_POST_GET_REVIEW_COMMENT = {API_BASE_URL @"GetCommentOnReview.php/?"};
 NSString *const API_POST_GET_COUNTRY = {API_BASE_URL @"GetCountry.php/?"};
 NSString *const API_POST_ADD_COMMENT_REVIEW = {API_BASE_URL @"CommentOnReview.php/?"};
+NSString *const API_POST_SET_REDEEM = {API_BASE_URL @"setRedeem.php/?"};
+NSString *const API_POST_MENU_FIND_FRIENDS = {API_BASE_URL @"GetMenuFriend.php/?"};
 @implementation ServerAPIPath
 
 @end

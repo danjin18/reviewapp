@@ -204,6 +204,9 @@
         
     }];
 }
+- (IBAction)laterClicked:(id)sender {
+    [self performSegueWithIdentifier:@"laterSegue" sender:nil];
+}
 
 /*
 #pragma mark - Navigation

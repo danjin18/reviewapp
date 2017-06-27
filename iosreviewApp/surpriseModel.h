@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSMutableArray *review;
 @property (nonatomic, retain) NSMutableArray *sid;
 @property (nonatomic, retain) NSMutableArray *points;
+@property (nonatomic, retain) NSMutableArray *status;
 
 -(id)init:(NSDictionary*)jsonObject;
 -(void) initWithJsonObject:(NSDictionary*)jsonObject;

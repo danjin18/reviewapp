@@ -20,6 +20,7 @@
 #import "MyReviewViewController.h"
 #import "MyCommentViewController.h"
 #import "MyEditorPickViewController.h"
+#import "MyFriendViewController.h"
 
 #import "ContactViewController.h"
 #import "SearchViewController.h"
@@ -51,14 +52,29 @@
         [self.rightbarButton setAction: @selector( rightRevealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
-    
-    _first_name.text = [pref getSharedPreference:nil :PREF_PARAM_USER_FIRSTNAME :@""];
-    _last_name.text = [pref getSharedPreference:nil :PREF_PARAM_USER_LASTNAME :@""];
-    
-    _user_photo.image = nil;
-    NSURL *url = [NSURL URLWithString:[pref getSharedPreference:nil :PREF_PARAM_USER_IMAGE :@""]];
-    [_user_photo setImageWithURL:url];
-    
+    if(_username == nil)
+    {
+        _first_name.text = [pref getSharedPreference:nil :PREF_PARAM_USER_FIRSTNAME :@""];
+        _last_name.text = [pref getSharedPreference:nil :PREF_PARAM_USER_LASTNAME :@""];
+    }
+    else {
+        NSArray *arrName = [_username componentsSeparatedByString:@" "];
+        _first_name.text = [arrName objectAtIndex:0];
+        _last_name.text = [arrName objectAtIndex:1];
+    }
+    if(_userphoto == nil)
+    {
+        _user_photo.image = nil;
+        NSURL *url = [NSURL URLWithString:[pref getSharedPreference:nil :PREF_PARAM_USER_IMAGE :@""]];
+        [_user_photo setImageWithURL:url];
+    }
+    else {
+        _user_photo.image = nil;
+        NSURL *url = [NSURL URLWithString:_userphoto];
+        [_user_photo setImageWithURL:url];
+    }
+    if(_userid == nil)
+        _userid = [pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""];
     selection = 0;
     _reviewTable.hidden = NO;
     _commentTable.hidden = YES;
@@ -91,7 +107,7 @@
     [utility showProgressDialog:self];
     
     NSURL *URL = [NSURL URLWithString:API_POST_GET_POINTS];
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""],@"userId",
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_userid,@"userId",
                                 nil];
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -134,7 +150,7 @@
     [utility showProgressDialog:self];
     
     NSURL *URL = [NSURL URLWithString:API_POST_GET_MY_REVIEWS];
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"user_id", nil];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_userid, @"user_id", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -176,7 +192,7 @@
     
     
     NSURL *URL = [NSURL URLWithString:API_POST_GET_MY_COMMENTS];
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"userId", nil];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_userid, @"userId", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -221,7 +237,7 @@
     
     
     NSURL *URL = [NSURL URLWithString:API_POST_GET_MY_EDITOR];
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"userId", nil];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_userid, @"userId", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -266,6 +282,9 @@
     _reviewView.hidden = NO;
     _friendTable.hidden = YES;
     
+    [_reviewBtn setBackgroundColor:[UIColor greenColor]];
+    [_commentBtn setBackgroundColor:[UIColor clearColor]];
+    [_EditorBtn setBackgroundColor:[UIColor clearColor]];
     selection = 0;
 //    [self getMyReview];
 //    [self performSegueWithIdentifier:@"reviewSegue" sender:self];
@@ -278,6 +297,10 @@
     _reviewView.hidden = NO;
     _friendTable.hidden = YES;
     
+    [_reviewBtn setBackgroundColor:[UIColor clearColor]];
+    [_commentBtn setBackgroundColor:[UIColor greenColor]];
+    [_EditorBtn setBackgroundColor:[UIColor clearColor]];
+    
     selection = 1;
 //    [self getComment];
 //    [self performSegueWithIdentifier:@"commentSegue" sender:self];
@@ -289,6 +312,10 @@
     
     _reviewView.hidden = NO;
     _friendTable.hidden = YES;
+    
+    [_reviewBtn setBackgroundColor:[UIColor clearColor]];
+    [_commentBtn setBackgroundColor:[UIColor clearColor]];
+    [_EditorBtn setBackgroundColor:[UIColor greenColor]];
     
     selection = 2;
 //    [self getEditorPick];
@@ -336,6 +363,7 @@
     {
         MyReviewViewController *vc = [segue destinationViewController];
         vc.productModel = _reviewModel;
+        vc.userid = _userid;
         
         [vc viewWillAppear:true];
         //[vc.myTable reloadData];
@@ -344,6 +372,7 @@
     {
         MyCommentViewController *vc = [segue destinationViewController];
         vc.commentModel = _commentModel;
+        vc.userid = _userid;
         [vc.myTable reloadData];
 
     }
@@ -351,9 +380,14 @@
     {
         MyEditorPickViewController *vc = [segue destinationViewController];
         vc.productModel = _editorPickerModel;
-        
+        vc.userid = _userid;
         [vc.myTable reloadData];
 //        [vc viewWillAppear:true];
+    }
+    if([[segue identifier] isEqualToString:@"friendSegue"])
+    {
+        MyFriendViewController *vc = [segue destinationViewController];
+        vc.userid = _userid;
     }
 }
 

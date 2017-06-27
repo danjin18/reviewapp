@@ -109,14 +109,20 @@
     NSString *name = [self.arrSurprise.title objectAtIndex:indexPath.row];
     NSString *expiry = [self.arrSurprise.expiry objectAtIndex:indexPath.row]; //rate
     NSString *review = [self.arrSurprise.review objectAtIndex:indexPath.row];
+    NSString *status = [self.arrSurprise.status objectAtIndex:indexPath.row];
     
     [cell setPhotoCell:photoUrl];
     [cell setTitleCell:name];
     [cell setExpiryCell:expiry];
     [cell setReviewCell:review];
+    [cell setRedeemed:status];
     
     cell.redeemBtn.tag = indexPath.row;
     [cell.redeemBtn addTarget:self action:@selector(redeemClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    cell.redeemBtn.tag = indexPath.row;
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longredeemClicked:)];
+    [cell.redeemBtn addGestureRecognizer:longPress];
     
     cell.shareBtn.tag = indexPath.row;
     [cell.shareBtn addTarget:self action:@selector(shareClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -126,15 +132,61 @@
 
 -(void)redeemClicked:(UIButton*)sender
 {
-    if (sender.tag == 0)
-    {
-        // Your code here
-    }
-    [sender setTitle:@"Redeemed" forState:UIControlStateDisabled];
     redeem_row = sender.tag;
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.myTable];
+    NSIndexPath *indexPath = [self.myTable indexPathForRowAtPoint:buttonPosition];
+    
+    SurpriseTableViewCell *cell = (SurpriseTableViewCell *)[self.myTable cellForRowAtIndexPath:indexPath];
+    [cell setRedeemed:@"1"];
+    [self setRedeemed:[self.arrSurprise.sid objectAtIndex:indexPath.row]];
     [self performSegueWithIdentifier:@"redeemSegue" sender:self];
 }
+-(void)longredeemClicked:(UILongPressGestureRecognizer*)gestureRecognizer
+{
+    CGPoint p = [gestureRecognizer locationInView:self.myTable];
+    
+    NSIndexPath *indexPath = [self.myTable indexPathForRowAtPoint:p];
+    if (indexPath == nil) {
+        NSLog(@"long press on table view but not on a row");
+    }
+    else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        SurpriseTableViewCell *cell = (SurpriseTableViewCell *)[self.myTable cellForRowAtIndexPath:indexPath];
+        [cell setRedeemed:@"1"];
+        [self setRedeemed:[self.arrSurprise.sid objectAtIndex:indexPath.row]];
+    }
+    
+}
+-(void)setRedeemed:(NSString *)sid
+{
+    [utility showProgressDialog:self];
+    
+    
+    NSURL *URL = [NSURL URLWithString:API_POST_SET_REDEEM];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"user_id",
+                                sid, @"sid",
+                                nil];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager POST:URL.absoluteString parameters:parameters progress:nil success:^(NSURLSessionDataTask * task, id  responseObject) {
+        
+        [utility hideProgressDialog];
+        if (responseObject == nil) {
+            return;
+        }
+        else {
 
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask  *task, NSError  *error) {
+        
+        [utility hideProgressDialog];
+        [[AppDelegate sharedAppDelegate] showToastMessage:error.localizedDescription];
+        
+    }];
+}
 -(void)shareClicked:(UIButton*)sender
 {
     if (sender.tag == 0)
@@ -173,12 +225,14 @@
     // Pass the selected object to the new view controller.
     if([[segue identifier] isEqualToString:@"redeemSegue"])
     {
-        RedeemDetailViewController *vc = [segue destinationViewController];
+        UINavigationController *navController = [segue destinationViewController];
+        RedeemDetailViewController *vc = (RedeemDetailViewController *)navController.topViewController;
+        vc.sid = [self.arrSurprise.sid objectAtIndex:redeem_row];
     }
     
     if([[segue identifier] isEqualToString:@"shareSegue"])
     {
-        RedeemShareViewController *vc = [segue destinationViewController];
+        UINavigationController *navController = [segue destinationViewController];RedeemShareViewController *vc = (RedeemShareViewController *)navController.topViewController;
         vc.imageURL = [_arrSurprise.photo objectAtIndex:share_row];
     }
 }
@@ -189,12 +243,7 @@
     [self presentViewController:controller animated:NO completion:nil];
 }
 - (IBAction)contactClicked:(id)sender {
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
-    
-    controller.modalPresentationStyle =  UIModalPresentationOverCurrentContext;
-    
-    [self presentViewController:controller animated:NO completion:nil];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 - (IBAction)barcodeClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

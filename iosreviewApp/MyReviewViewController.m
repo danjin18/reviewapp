@@ -34,21 +34,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-        
-        [self.rightbarButton setTarget: self.revealViewController];
-        [self.rightbarButton setAction: @selector( rightRevealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    }
-    
+
     pref = [Preference getInstance];
     [_myTable registerNib:[UINib nibWithNibName:@"ReviewTableViewCell" bundle:nil] forCellReuseIdentifier:@"ReviewTableViewCell"];
-    
+    if(_userid == nil)
+        _userid = [pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""];
     [self getMyReview];
 }
 
@@ -58,7 +48,7 @@
     [utility showProgressDialog:self];
     
     NSURL *URL = [NSURL URLWithString:API_POST_GET_MY_REVIEWS];
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"user_id", nil];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_userid, @"user_id", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

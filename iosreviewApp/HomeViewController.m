@@ -13,8 +13,13 @@
 #import "ContactViewController.h"
 #import "ScanController.h"
 
-@interface HomeViewController ()
+#import "Constants.h"
+#import "Preference.h"
 
+@interface HomeViewController ()
+{
+    Preference *pref;
+}
 @end
 
 @implementation HomeViewController
@@ -33,9 +38,27 @@
         [self.rightbarButton setAction: @selector( rightRevealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
-    
+    pref = [Preference getInstance];
+    NSString *userid;
+    userid = [pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""];
+    if([userid isEqualToString:@""])
+    {
+        _reviewView.hidden = YES;
+        _featureView.hidden = YES;
+    }
+//    [self.contactButton addTarget:self action:@selector(searchClicked:)
+//         forControlEvents:UIControlEventTouchUpInside];
+/*
     UINavigationBar *bar = [self.navigationController navigationBar];
-    [bar setTintColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0]];
+    [bar setTintColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0]];*/
+/*    UIImage* image3 = [UIImage imageNamed:@"ic_launcher.png"];
+    CGRect frameimg = CGRectMake(0, 0, image3.size.width, image3.size.height);
+    UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
+    [someButton setBackgroundImage:image3 forState:UIControlStateNormal];
+    [someButton setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *mailbutton =[[UIBarButtonItem alloc] initWithCustomView:someButton];
+    _contactButton=mailbutton;*/
 
 }
 - (IBAction)searchClicked:(id)sender {
@@ -45,6 +68,7 @@
     
     [self.navigationController pushViewController: controller animated:YES];
 }
+
 - (IBAction)contactClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];

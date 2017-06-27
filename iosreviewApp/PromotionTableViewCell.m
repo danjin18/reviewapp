@@ -24,6 +24,8 @@
 
 -(void)setPhotoCell:(NSString *)photo
 {
+    if((photo == nil) || ([photo isEqualToString:@""]))
+        return;
     _photo.image = nil;
     NSURL *url = [NSURL URLWithString:photo];
     [_photo setImageWithURL:url];

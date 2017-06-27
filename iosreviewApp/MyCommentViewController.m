@@ -33,25 +33,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-        
-        [self.rightbarButton setTarget: self.revealViewController];
-        [self.rightbarButton setAction: @selector( rightRevealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    }
     
     pref = [Preference getInstance];
     
     [_myTable registerNib:[UINib nibWithNibName:@"CommentTableViewCell" bundle:nil] forCellReuseIdentifier:@"CommentTableViewCell"];
+    if(_userid == nil)
+        _userid = [pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""];
     
     [self getComment];
-
-
 }
 
 -(void)getComment
@@ -60,7 +49,7 @@
     
     
     NSURL *URL = [NSURL URLWithString:API_POST_GET_MY_COMMENTS];
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"userId", nil];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_userid, @"userId", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -75,6 +64,8 @@
             NSError *error = nil;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
             NSArray *tmp = (NSArray *)json;
+            if([tmp count] == 0)
+                return;
             NSDictionary *reviewJson = [tmp objectAtIndex:0];
             if([[reviewJson objectForKey:@"status"] isEqualToString:@"ok"]) {
                 @try {

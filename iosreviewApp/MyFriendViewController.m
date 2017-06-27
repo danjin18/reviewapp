@@ -47,7 +47,8 @@
     pref = [Preference getInstance];
     
     [_myTable registerNib:[UINib nibWithNibName:@"MyFriendTableViewCell" bundle:nil] forCellReuseIdentifier:@"MyFriendTableViewCell"];
-    
+    if(_userid == nil)
+        _userid = [pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""];
     [self getFriend];
 }
 -(void)getFriend
@@ -56,7 +57,7 @@
     
     
     NSURL *URL = [NSURL URLWithString:API_POST_GET_MY_FRIEND];
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"user_id", nil];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_userid, @"user_id", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

@@ -15,10 +15,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *review;
 @property (weak, nonatomic) IBOutlet UIButton *redeemBtn;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
+@property (weak, nonatomic) IBOutlet UIButton *redeemedBtn;
 
 -(void)setPhotoCell:(NSString *)photoURL;
 -(void)setTitleCell:(NSString *)title;
 -(void)setExpiryCell:(NSString *)expiry;
 -(void)setReviewCell:(NSString *)review;
-
+-(void)setRedeemed:(NSString *)status;
 @end

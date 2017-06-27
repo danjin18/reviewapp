@@ -33,7 +33,7 @@
 @interface ProductDetailViewController ()
 {
     NSString *selStore;
-    NSInteger selectedCell, onlineCell, storeCell;
+    NSInteger selectedCell, onlineCell, storeCell, selectedPhoto;
     NSString *selPhoto;
     
     int selectTable;
@@ -286,10 +286,16 @@
         NSString *comment = [self.reviewDetailModel.comment objectAtIndex:indexPath.row];
         NSString *point = [self.reviewDetailModel.point objectAtIndex:indexPath.row];
         NSString *commentCount = [self.reviewDetailModel.commentCount objectAtIndex:indexPath.row];
-//    NSString *imageCount = [NSString stringWithFormat:@"%lu", (unsigned long)[[self.reviewDetailModel.photo objectAtIndex:indexPath.row] count]];
+        NSString *imageCount;
+        if([[self.reviewDetailModel.photo objectAtIndex:indexPath.row] isEqualToString:@""])
+            imageCount = @"0";
+        else
+            imageCount = @"1";
+        
         NSString *LikeCount = [self.reviewDetailModel.like objectAtIndex:indexPath.row];
         NSString *DislikeCount = [self.reviewDetailModel.dislike objectAtIndex:indexPath.row];
         NSString *rate = [self.reviewDetailModel.review objectAtIndex:indexPath.row];
+        
     
         [cell setProductPhotoCell:photoUrl];
         [cell setNameCell:name];
@@ -298,7 +304,7 @@
         [cell setLikeCountCell:LikeCount];
         [cell setCommentCountCell:commentCount];
         [cell setDislikeCountCell:DislikeCount];
-        [cell setImageCountCell:@"1"];
+        [cell setImageCountCell:imageCount];
         [cell setRateCell:rate];
         
         cell.LikeBtn.tag = indexPath.row;
@@ -494,7 +500,10 @@
 {
 //    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *) sender;
  //   selPhoto = [self.productModel.product_photo objectAtIndex:gesture.view.tag];
-    
+    selectedPhoto = sender.tag;
+    selPhoto = [self.reviewDetailModel.photo objectAtIndex:sender.tag];
+    if([selPhoto isEqualToString:@""])
+        return;
     [self performSegueWithIdentifier:@"imageSegue" sender:self];
 }
 
@@ -632,7 +641,8 @@
     }
     if([[segue identifier] isEqualToString:@"imageSegue"])
     {
-        
+        AddImageViewController *vc = [segue destinationViewController];
+        vc.photoURL = selPhoto;
     }
     // Pass the selected object to the new view controller.
 }
@@ -661,12 +671,7 @@
     [self.navigationController pushViewController: controller animated:YES];
 }
 - (IBAction)contactClicked:(id)sender {
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
-    
-    controller.modalPresentationStyle =  UIModalPresentationOverCurrentContext;
-    
-    [self presentViewController:controller animated:NO completion:nil];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 - (IBAction)barcodeClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

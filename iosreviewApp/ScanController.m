@@ -14,7 +14,9 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface ScanController () <AVCaptureMetadataOutputObjectsDelegate>
-
+{
+    NSString *barcode;
+}
 @property (weak, nonatomic) IBOutlet UIView *cameraPreviewView;
 
 @property (nonatomic, strong) AVCaptureSession *captureSession;
@@ -126,12 +128,23 @@
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.captureSession stopRunning];
                     [UIPasteboard generalPasteboard].string = capturedBarcode;
+                    barcode = capturedBarcode;
                     
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    //[self dismissViewControllerAnimated:YES completion:nil];
+                    [self performSegueWithIdentifier:@"searchSegue" sender:self];
                 });
                 return;
             }
         }
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"searchSegue"])
+    {
+        SearchViewController *vc = [segue destinationViewController];
+        vc.barcodeText = barcode;
     }
 }
 
@@ -142,12 +155,7 @@
     [self presentViewController:controller animated:NO completion:nil];
 }
 - (IBAction)contactClicked:(id)sender {
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
-    
-    controller.modalPresentationStyle =  UIModalPresentationOverCurrentContext;
-    
-    [self presentViewController:controller animated:NO completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)barcodeClicked:(id)sender {
 

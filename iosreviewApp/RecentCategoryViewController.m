@@ -12,13 +12,15 @@
 #import "FullPhotoViewController.h"
 #import "SWRevealViewController.h"
 
-#import "categoryTableViewCell.h"
+#import "RecentProductTableViewCell.h"
 
 #import <AFNetworking.h>
 #import "ServerAPIPath.h"
 
 #import "utility.h"
 #import "AppDelegate.h"
+#import "Preference.h"
+#import "Constants.h"
 
 #import "ContactViewController.h"
 #import "SearchViewController.h"
@@ -28,6 +30,7 @@
 {
     int selected_row;
     NSString *selPhoto;
+    Preference *pref;
 }
 @end
 
@@ -36,24 +39,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [_reviewTable registerNib:[UINib nibWithNibName:@"categoryTableViewCell" bundle:nil] forCellReuseIdentifier:@"categoryTableViewCell"];
+    [_reviewTable registerNib:[UINib nibWithNibName:@"RecentProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"RecentProductTableViewCell"];
     
     self.view.backgroundColor = [UIColor clearColor];
 
-    [self getReviewList];
+    pref = [Preference getInstance];
+    [self getFeautrueReviewList];
 }
 
--(void)getReviewList {
-
-    [utility showProgressDialog:self];
+-(void)getFeautrueReviewList {
 
     
-    NSURL *URL = [NSURL URLWithString:API_POST_GET_FEATURE_REVIEW];
+    NSString *userid;
+    userid = [pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:userid,@"user_id",
+                                nil];
+    if([userid isEqualToString:@""])
+        return;
+    
+    [utility showProgressDialog:self];
+    NSURL *URL = [NSURL URLWithString:API_POST_GET_MY_REVIEWS];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    [manager POST:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask * task, id  responseObject) {
+    [manager POST:URL.absoluteString parameters:parameters progress:nil success:^(NSURLSessionDataTask * task, id  responseObject) {
         
         [utility hideProgressDialog];
         if (responseObject == nil) {
@@ -87,26 +97,28 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    categoryTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"categoryTableViewCell" forIndexPath:indexPath];
+    RecentProductTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"RecentProductTableViewCell" forIndexPath:indexPath];
     if (cell == nil) {
-        cell = [[categoryTableViewCell alloc] init];
+        cell = [[RecentProductTableViewCell alloc] init];
     }
     NSString *photoUrl = [self.arrReview.primary_photos objectAtIndex:indexPath.row];
     NSString *name = [self.arrReview.name objectAtIndex:indexPath.row];
     NSString *review = [self.arrReview.review objectAtIndex:indexPath.row]; //rate
-    NSString *totalReviewCount = [self.arrReview.totalReviewCount objectAtIndex:indexPath.row];
+    NSString *price = [self.arrReview.sale_price objectAtIndex:indexPath.row];
+    NSString *comment = [self.arrReview.comment objectAtIndex:indexPath.row];
     
-    [cell setCategory_imageCell:photoUrl];
+    [cell setPhotoCell:photoUrl];
     [cell setTitleCell:name];
-    [cell setRatevalueCell:review];
-    [cell setCountCell:totalReviewCount];
+    [cell setRateCell:review];
+    [cell setSaleCell:price];
+    [cell setReviewCell:comment];
     
-    cell.category_image.userInteractionEnabled = YES;
-    cell.category_image.tag = indexPath.row;
+    cell.product_photo.userInteractionEnabled = YES;
+    cell.product_photo.tag = indexPath.row;
     
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullPhoto:)];
     tapped.numberOfTapsRequired = 1;
-    [cell.category_image addGestureRecognizer:tapped];
+    [cell.product_photo addGestureRecognizer:tapped];
     
     return cell;
 }
@@ -119,11 +131,14 @@
 }
 - (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    if([self.arrReview.product_id count] > 8)
+        return 8;
+    
+    return [self.arrReview.product_id count];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 150;
 }
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

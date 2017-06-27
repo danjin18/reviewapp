@@ -12,7 +12,7 @@
 @interface MyFriendViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *myTable;
 @property (nonatomic, retain) MyFriendModel *myFriendModel;
-
+@property (nonatomic, retain) NSString *userid;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightbarButton;
 

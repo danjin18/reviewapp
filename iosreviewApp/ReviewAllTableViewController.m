@@ -13,7 +13,7 @@
 #import "SearchViewController.h"
 #import "ScanController.h"
 
-#import "categoryTableViewCell.h"
+#import "RecentProductTableViewCell.h"
 
 #import "ProductDetailViewController.h"
 @interface ReviewAllTableViewController ()
@@ -40,30 +40,32 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
-    [_reviewAllTable registerNib:[UINib nibWithNibName:@"categoryTableViewCell" bundle:nil] forCellReuseIdentifier:@"categoryTableViewCell"];
+    [_reviewAllTable registerNib:[UINib nibWithNibName:@"RecentProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"RecentProductTableViewCell"];
 }
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    categoryTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"categoryTableViewCell" forIndexPath:indexPath];
+    RecentProductTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"RecentProductTableViewCell" forIndexPath:indexPath];
     if (cell == nil) {
-        cell = [[categoryTableViewCell alloc] init];
+        cell = [[RecentProductTableViewCell alloc] init];
     }
     NSString *photoUrl = [self.arrAllReview.primary_photos objectAtIndex:indexPath.row];
     NSString *name = [self.arrAllReview.name objectAtIndex:indexPath.row];
     NSString *review = [self.arrAllReview.review objectAtIndex:indexPath.row]; //rate
-    NSString *totalReviewCount = [self.arrAllReview.totalReviewCount objectAtIndex:indexPath.row];
+    NSString *price = [self.arrAllReview.sale_price objectAtIndex:indexPath.row];
+    NSString *comment = [self.arrAllReview.comment objectAtIndex:indexPath.row];
     
-    [cell setCategory_imageCell:photoUrl];
+    [cell setPhotoCell:photoUrl];
     [cell setTitleCell:name];
-    [cell setRatevalueCell:review];
-    [cell setCountCell:totalReviewCount];
+    [cell setRateCell:review];
+    [cell setSaleCell:price];
+    [cell setReviewCell:comment];
     
-    cell.category_image.userInteractionEnabled = YES;
-    cell.category_image.tag = indexPath.row;
+    cell.product_photo.userInteractionEnabled = YES;
+    cell.product_photo.tag = indexPath.row;
     
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullPhoto:)];
     tapped.numberOfTapsRequired = 1;
-    [cell.category_image addGestureRecognizer:tapped];
+    [cell.product_photo addGestureRecognizer:tapped];
     
     return cell;
 }
@@ -84,7 +86,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 150;
 }
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -101,12 +103,7 @@
     [self.navigationController pushViewController: controller animated:YES];
 }
 - (IBAction)contactClicked:(id)sender {
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
-    
-    controller.modalPresentationStyle =  UIModalPresentationOverCurrentContext;
-    
-    [self presentViewController:controller animated:NO completion:nil];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 - (IBAction)barcodeClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

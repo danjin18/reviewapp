@@ -13,8 +13,5 @@
 @property (weak, nonatomic) IBOutlet UITableView *myTable;
 
 @property (nonatomic, retain) myReviewModel *productModel;
-
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *rightbarButton;
-
+@property (nonatomic, retain) NSString *userid;
 @end

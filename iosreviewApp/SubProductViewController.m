@@ -324,12 +324,7 @@
     [self.navigationController pushViewController: controller animated:YES];
 }
 - (IBAction)contactClicked:(id)sender {
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
-    
-    controller.modalPresentationStyle =  UIModalPresentationOverCurrentContext;
-    
-    [self presentViewController:controller animated:NO completion:nil];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 - (IBAction)barcodeClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

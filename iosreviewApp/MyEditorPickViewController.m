@@ -33,20 +33,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-        
-        [self.rightbarButton setTarget: self.revealViewController];
-        [self.rightbarButton setAction: @selector( rightRevealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    }
     
     pref = [Preference getInstance];
-//    [self getEditorPick];
+    if(_userid == nil)
+        _userid = [pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""];
+    [self getEditorPick];
 }
 -(void)getEditorPick
 {
@@ -54,7 +45,7 @@
     
     
     NSURL *URL = [NSURL URLWithString:API_POST_GET_MY_EDITOR];
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[pref getSharedPreference:nil :PREF_PARAM_USER_ID :@""], @"userId", nil];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_userid, @"userId", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

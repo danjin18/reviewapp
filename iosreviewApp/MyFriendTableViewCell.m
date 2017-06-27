@@ -33,6 +33,8 @@
 
 -(void)setPhotoCell:(NSString *)photoURL
 {
+    if((photoURL == nil) || ([photoURL isEqualToString:@""]))
+        return;
     _user_photo.image = nil;
     NSURL *url = [NSURL URLWithString:photoURL];
     [_user_photo setImageWithURL:url];

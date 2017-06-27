@@ -51,6 +51,8 @@ extern NSString *const API_POST_GET_SUGGESTED_FRIEND;
 extern NSString *const API_POST_GET_REVIEW_COMMENT;
 extern NSString *const API_POST_GET_COUNTRY;
 extern NSString *const API_POST_ADD_COMMENT_REVIEW;
+extern NSString *const API_POST_SET_REDEEM;
+extern NSString *const API_POST_MENU_FIND_FRIENDS;
 @interface ServerAPIPath : NSObject
 
 @end

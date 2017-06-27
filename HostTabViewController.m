@@ -48,7 +48,9 @@
     self.tabLocation = ViewPagerTabLocationTop;
     self.tabHeight = 49;
     self.tabOffset = 36;
-    self.tabWidth = UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? 128.0f : 205.0f;
+    CGFloat screenWidth = self.view.frame.size.width;
+    CGFloat screenHeight = self.view.frame.size.height;
+    self.tabWidth = UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? screenHeight/2 : screenWidth/2;
     self.fixFormerTabsPositions = NO;
     self.fixLatterTabsPositions = NO;
     self.shouldShowDivider = YES;

@@ -33,9 +33,11 @@
         [self.rightbarButton setAction: @selector( rightRevealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
-    
-    NSString *urlString = @"http://ansfy.com/reviewapp/webservice/faq.php";
-    NSURL *url = [NSURL URLWithString:urlString];
+    NSString* appID = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+//    NSString *appStoreURL = @"itms-apps://itunes.apple.com/app/";
+    NSString *fullURL = [NSString stringWithFormat:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%@&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8",appID];
+
+    NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [_rateWebview loadRequest:urlRequest];
     

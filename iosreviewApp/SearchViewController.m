@@ -60,7 +60,13 @@
     
     [_searchText setLeftViewMode:UITextFieldViewModeAlways];
     _searchText.leftView= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search.png"]];
+    
+    if(_barcodeText != nil)
+    {
+        [self searchProductList:_barcodeText barcodeParameter:TRUE];
+    }
 }
+
 - (IBAction)searchTextChanging:(id)sender {
     [self searchProductList:_searchText.text barcodeParameter:FALSE];
 }
@@ -233,12 +239,7 @@
 }
 
 - (IBAction)contactClicked:(id)sender {
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ContactViewController * controller = (ContactViewController *)[storyboard instantiateViewControllerWithIdentifier:@"contactview"];
-    
-    controller.modalPresentationStyle =  UIModalPresentationOverCurrentContext;
-    
-    [self presentViewController:controller animated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)barcodeClicked:(id)sender {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

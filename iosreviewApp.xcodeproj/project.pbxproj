@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		1C03F5FBDB36080E65341475 /* libPods-iosreviewApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C8C56C55F259C8CEAA6524 /* libPods-iosreviewApp.a */; };
+		A6E4D3091EFE0BA700D1DD07 /* arraw30-30.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E4D3081EFE0BA700D1DD07 /* arraw30-30.png */; };
+		A6EBF29E1F01A6B300F5A388 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EBF29C1F01A6B300F5A388 /* FriendTableViewCell.m */; };
+		A6EBF29F1F01A6B300F5A388 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6EBF29D1F01A6B300F5A388 /* FriendTableViewCell.xib */; };
+		A6EBF2A21F01AB1F00F5A388 /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EBF2A11F01AB1F00F5A388 /* FriendModel.m */; };
+		A6EBF2A41F01E89100F5A388 /* nouser.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EBF2A31F01E89100F5A388 /* nouser.png */; };
+		A6EBF2A61F01EB3A00F5A388 /* noproduct.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EBF2A51F01EB3A00F5A388 /* noproduct.png */; };
+		A6EBF2A91F01F04700F5A388 /* recentProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EBF2A81F01F04700F5A388 /* recentProductModel.m */; };
+		A6EBF2B31F01F0A300F5A388 /* RecentProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6EBF2B11F01F0A300F5A388 /* RecentProductTableViewCell.xib */; };
+		A6EBF2BB1F02064800F5A388 /* RecentProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EBF2B01F01F0A300F5A388 /* RecentProductTableViewCell.m */; };
+		A6EBF2BE1F02368300F5A388 /* RecentFeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EBF2BD1F02368300F5A388 /* RecentFeaturedViewController.m */; };
 		F80F536A1ED3E48100C999CD /* ServerAPIPath.m in Sources */ = {isa = PBXBuildFile; fileRef = F80F53691ED3E48000C999CD /* ServerAPIPath.m */; };
 		F80F536D1ED4131100C999CD /* RecentCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F80F536C1ED4131000C999CD /* RecentCategoryViewController.m */; };
 		F80F53701ED4AB9100C999CD /* reviewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F80F536F1ED4AB8F00C999CD /* reviewModel.m */; };
@@ -50,7 +60,6 @@
 		F8153FFE1EE1F62E00744353 /* CircularProgressTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = F8153FFD1EE1F62E00744353 /* CircularProgressTimer.m */; };
 		F81540011EE1F65C00744353 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = F8153FFF1EE1F65C00744353 /* circle.png */; };
 		F81540021EE1F65C00744353 /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F81540001EE1F65C00744353 /* circle@2x.png */; };
-		F81540051EE1FB9700744353 /* RecentProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F81540041EE1FB9700744353 /* RecentProductViewController.m */; };
 		F81540081EE1FC2900744353 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F81540071EE1FC2900744353 /* SettingViewController.m */; };
 		F815400B1EE206EB00744353 /* RightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F815400A1EE206EB00744353 /* RightMenuViewController.m */; };
 		F815400F1EE2127500744353 /* ScanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F815400E1EE2127500744353 /* ScanController.m */; };
@@ -210,6 +219,23 @@
 /* Begin PBXFileReference section */
 		1D70AB34E9FBA52C38280E57 /* Pods-iosreviewApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosreviewApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosreviewApp/Pods-iosreviewApp.debug.xcconfig"; sourceTree = "<group>"; };
 		75C8C56C55F259C8CEAA6524 /* libPods-iosreviewApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosreviewApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6E4D3081EFE0BA700D1DD07 /* arraw30-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arraw30-30.png"; sourceTree = "<group>"; };
+		A6EBF29B1F01A6B300F5A388 /* FriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
+		A6EBF29C1F01A6B300F5A388 /* FriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
+		A6EBF29D1F01A6B300F5A388 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
+		A6EBF2A01F01AB1F00F5A388 /* FriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendModel.h; sourceTree = "<group>"; };
+		A6EBF2A11F01AB1F00F5A388 /* FriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendModel.m; sourceTree = "<group>"; };
+		A6EBF2A31F01E89100F5A388 /* nouser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nouser.png; sourceTree = "<group>"; };
+		A6EBF2A51F01EB3A00F5A388 /* noproduct.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noproduct.png; sourceTree = "<group>"; };
+		A6EBF2A71F01F04700F5A388 /* recentProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = recentProductModel.h; sourceTree = "<group>"; };
+		A6EBF2A81F01F04700F5A388 /* recentProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = recentProductModel.m; sourceTree = "<group>"; };
+		A6EBF2AF1F01F0A300F5A388 /* RecentProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProductTableViewCell.h; sourceTree = "<group>"; };
+		A6EBF2B01F01F0A300F5A388 /* RecentProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentProductTableViewCell.m; sourceTree = "<group>"; };
+		A6EBF2B11F01F0A300F5A388 /* RecentProductTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentProductTableViewCell.xib; sourceTree = "<group>"; };
+		A6EBF2B81F01FC5600F5A388 /* RecentProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProductViewController.h; sourceTree = "<group>"; };
+		A6EBF2B91F01FC5600F5A388 /* RecentProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentProductViewController.m; sourceTree = "<group>"; };
+		A6EBF2BC1F02368300F5A388 /* RecentFeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentFeaturedViewController.h; sourceTree = "<group>"; };
+		A6EBF2BD1F02368300F5A388 /* RecentFeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentFeaturedViewController.m; sourceTree = "<group>"; };
 		D555BB03E18EB9BE8625D417 /* Pods-iosreviewApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosreviewApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosreviewApp/Pods-iosreviewApp.release.xcconfig"; sourceTree = "<group>"; };
 		F80F53681ED3E48000C999CD /* ServerAPIPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAPIPath.h; sourceTree = "<group>"; };
 		F80F53691ED3E48000C999CD /* ServerAPIPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAPIPath.m; sourceTree = "<group>"; };
@@ -768,12 +794,17 @@
 				F80F536C1ED4131000C999CD /* RecentCategoryViewController.m */,
 				F80F537A1ED513F100C999CD /* ReviewAllTableViewController.h */,
 				F80F537B1ED513F100C999CD /* ReviewAllTableViewController.m */,
+				F82BB5901EF8AF64006052D8 /* AddImageViewController.m */,
+				A6EBF2BC1F02368300F5A388 /* RecentFeaturedViewController.h */,
+				A6EBF2BD1F02368300F5A388 /* RecentFeaturedViewController.m */,
 				F8AA8B5F1ED27508001B1ACA /* CategoryViewController.h */,
 				F8AA8B601ED27508001B1ACA /* CategoryViewController.m */,
 				F80F53771ED5114B00C999CD /* CategoryAllCollectionViewController.h */,
 				F80F53781ED5114C00C999CD /* CategoryAllCollectionViewController.m */,
 				F80F53A71ED62AA400C999CD /* SubCategoryViewController.h */,
 				F80F53A81ED62AA400C999CD /* SubCategoryViewController.m */,
+				A6EBF2B81F01FC5600F5A388 /* RecentProductViewController.h */,
+				A6EBF2B91F01FC5600F5A388 /* RecentProductViewController.m */,
 				F80F53AA1ED644FD00C999CD /* SubProductViewController.h */,
 				F80F53AB1ED644FE00C999CD /* SubProductViewController.m */,
 				F80F537D1ED54CFD00C999CD /* RegisterViewController.h */,
@@ -823,7 +854,6 @@
 				F82BB58C1EF8AF46006052D8 /* AddCommentViewController.h */,
 				F82BB58D1EF8AF46006052D8 /* AddCommentViewController.m */,
 				F82BB58F1EF8AF64006052D8 /* AddImageViewController.h */,
-				F82BB5901EF8AF64006052D8 /* AddImageViewController.m */,
 			);
 			path = iosreviewApp;
 			sourceTree = "<group>";
@@ -955,6 +985,9 @@
 		F8AA8B0B1ED008BB001B1ACA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A6EBF2A51F01EB3A00F5A388 /* noproduct.png */,
+				A6EBF2A31F01E89100F5A388 /* nouser.png */,
+				A6E4D3081EFE0BA700D1DD07 /* arraw30-30.png */,
 				F81DCAE71EEF8F3400BF2BAA /* back.png */,
 				F81DCAE51EEF8DAC00BF2BAA /* next.png */,
 				F871CD151EE67EDD00A166C1 /* menu_barcode.png */,
@@ -1011,6 +1044,11 @@
 				F80F53AF1ED6495300C999CD /* ProductTableViewCell.xib */,
 				F80F53B21ED679B000C999CD /* productModel.h */,
 				F80F53B31ED679B000C999CD /* productModel.m */,
+				A6EBF2AF1F01F0A300F5A388 /* RecentProductTableViewCell.h */,
+				A6EBF2B01F01F0A300F5A388 /* RecentProductTableViewCell.m */,
+				A6EBF2B11F01F0A300F5A388 /* RecentProductTableViewCell.xib */,
+				A6EBF2A71F01F04700F5A388 /* recentProductModel.h */,
+				A6EBF2A81F01F04700F5A388 /* recentProductModel.m */,
 				F845386B1ED8BDB6008EC97C /* ReviewDetailTableViewCell.h */,
 				F845386C1ED8BDB6008EC97C /* ReviewDetailTableViewCell.m */,
 				F845386D1ED8BDB6008EC97C /* ReviewDetailTableViewCell.xib */,
@@ -1052,6 +1090,11 @@
 				F8BB280B1EE15487001B2D1A /* HistoryTableViewCell.xib */,
 				F8BB280E1EE15770001B2D1A /* surpriseModel.h */,
 				F8BB280F1EE15770001B2D1A /* surpriseModel.m */,
+				A6EBF29B1F01A6B300F5A388 /* FriendTableViewCell.h */,
+				A6EBF29C1F01A6B300F5A388 /* FriendTableViewCell.m */,
+				A6EBF29D1F01A6B300F5A388 /* FriendTableViewCell.xib */,
+				A6EBF2A01F01AB1F00F5A388 /* FriendModel.h */,
+				A6EBF2A11F01AB1F00F5A388 /* FriendModel.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -1188,6 +1231,7 @@
 				F8AA8AED1ED001FF001B1ACA /* SVProgressHUD.bundle in Resources */,
 				F81540021EE1F65C00744353 /* circle@2x.png in Resources */,
 				F8AA8B261ED008CD001B1ACA /* facebook.png in Resources */,
+				A6E4D3091EFE0BA700D1DD07 /* arraw30-30.png in Resources */,
 				F8AA8B2A1ED008CD001B1ACA /* icon_dislike.png in Resources */,
 				F80F53A61ED627D100C999CD /* unchecked@2x.png in Resources */,
 				F8AA8B441ED009B0001B1ACA /* review_text_icon.png in Resources */,
@@ -1205,11 +1249,13 @@
 				F827B9611EDDD5C900E31D40 /* ReviewTableViewCell.xib in Resources */,
 				F8AA8B2C1ED008CD001B1ACA /* icon_friends.png in Resources */,
 				F827B9381EDCAE8600E31D40 /* CommentTableViewCell.xib in Resources */,
+				A6EBF2B31F01F0A300F5A388 /* RecentProductTableViewCell.xib in Resources */,
 				F8AA8A561ECF9527001B1ACA /* Assets.xcassets in Resources */,
 				F80F53941ED5FA7B00C999CD /* uicheckbox_checked.png in Resources */,
 				F8BB27FD1EE13227001B2D1A /* RedeempTableViewCell.xib in Resources */,
 				F84AAC8D1EE3105D00D3053B /* Localizable.strings in Resources */,
 				F8AA8B251ED008CD001B1ACA /* face.png in Resources */,
+				A6EBF2A41F01E89100F5A388 /* nouser.png in Resources */,
 				F8AA8B2E1ED008CD001B1ACA /* icon_like.png in Resources */,
 				F84AAC981EE3276000D3053B /* arrow_down.png in Resources */,
 				F819FA921EE0D79A00EB233F /* PromotionTableViewCell.xib in Resources */,
@@ -1222,6 +1268,7 @@
 				F8BB280D1EE15487001B2D1A /* HistoryTableViewCell.xib in Resources */,
 				F8BB28081EE15244001B2D1A /* SurpriseTableViewCell.xib in Resources */,
 				F80F53951ED5FA7B00C999CD /* uicheckbox_checked@2x.png in Resources */,
+				A6EBF29F1F01A6B300F5A388 /* FriendTableViewCell.xib in Resources */,
 				F871CD161EE67EDD00A166C1 /* menu_barcode.png in Resources */,
 				F80F53A21ED627D000C999CD /* checked.png in Resources */,
 				F8AA8B2F1ED008CD001B1ACA /* icon_notification.png in Resources */,
@@ -1239,6 +1286,7 @@
 				F80F53A31ED627D100C999CD /* checked@2x.png in Resources */,
 				F8AA8B2B1ED008CD001B1ACA /* icon_faq.png in Resources */,
 				F81DCAE61EEF8DAC00BF2BAA /* next.png in Resources */,
+				A6EBF2A61F01EB3A00F5A388 /* noproduct.png in Resources */,
 				F81540011EE1F65C00744353 /* circle.png in Resources */,
 				F8AA8B3F1ED009B0001B1ACA /* leftpassword.png in Resources */,
 				F8AA8B401ED009B0001B1ACA /* leftusername.png in Resources */,
@@ -1316,6 +1364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6EBF2BB1F02064800F5A388 /* RecentProductTableViewCell.m in Sources */,
 				F80F536A1ED3E48100C999CD /* ServerAPIPath.m in Sources */,
 				F8AA8AF61ED0021D001B1ACA /* MenuTableViewController.m in Sources */,
 				F80F53BD1ED7F96600C999CD /* PriceAlertDialogViewController.m in Sources */,
@@ -1324,11 +1373,12 @@
 				F811F5471EDBEB2700484FD1 /* FaqViewController.m in Sources */,
 				F8AA8B641ED27F56001B1ACA /* categoryModel.m in Sources */,
 				F811F53E1EDBDC4E00484FD1 /* SettingFriendViewController.m in Sources */,
+				A6EBF2BE1F02368300F5A388 /* RecentFeaturedViewController.m in Sources */,
 				F8AA8B581ED15800001B1ACA /* ColorPickerViewController.m in Sources */,
 				F8BB28001EE1335D001B2D1A /* RedeempViewController.m in Sources */,
 				F8AA8B051ED0031B001B1ACA /* MBProgressHUD.m in Sources */,
+				A6EBF2A91F01F04700F5A388 /* recentProductModel.m in Sources */,
 				F80F53B01ED6495300C999CD /* ProductTableViewCell.m in Sources */,
-				F81540051EE1FB9700744353 /* RecentProductViewController.m in Sources */,
 				F82BB58E1EF8AF46006052D8 /* AddCommentViewController.m in Sources */,
 				F8AA8B5D1ED2728A001B1ACA /* PhotoCollectionViewCell.m in Sources */,
 				F8AA8A4E1ECF9526001B1ACA /* AppDelegate.m in Sources */,
@@ -1347,6 +1397,7 @@
 				F81DCAEE1EF0942900BF2BAA /* UIImageResizing.m in Sources */,
 				F8140CE11EECCBFA00C19276 /* RateViewController.m in Sources */,
 				F821D4051EDF731B004EBD30 /* SettingReviewViewController.m in Sources */,
+				A6EBF2A21F01AB1F00F5A388 /* FriendModel.m in Sources */,
 				F827B9411EDCCBB800E31D40 /* ChangePasswordViewController.m in Sources */,
 				F8BB28161EE15D62001B2D1A /* HistoryViewController.m in Sources */,
 				F8AA8B0A1ED005F9001B1ACA /* ForgetViewController.m in Sources */,
@@ -1402,6 +1453,7 @@
 				F821D3F51EDF5DBC004EBD30 /* MyFriendViewController.m in Sources */,
 				F84AAC801EE3089C00D3053B /* LanguageManager.m in Sources */,
 				F8AA8B071ED0031B001B1ACA /* Constants.m in Sources */,
+				A6EBF29E1F01A6B300F5A388 /* FriendTableViewCell.m in Sources */,
 				F827B94D1EDD1FC600E31D40 /* FreestuffViewController.m in Sources */,
 				F827B9471EDD1F9600E31D40 /* PromotionViewController.m in Sources */,
 				F821D3FD1EDF6020004EBD30 /* MyFriendModel.m in Sources */,

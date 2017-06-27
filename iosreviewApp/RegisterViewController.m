@@ -34,6 +34,15 @@
     [_phonenumber setLeftViewMode:UITextFieldViewModeAlways];
     _phonenumber.leftView= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"phone.png"]];
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(Back)];
+    self.navigationItem.leftBarButtonItem = backButton;
+}
+- (IBAction)Back
+{
+    [self dismissViewControllerAnimated:YES completion:nil]; // ios 6
+}
 - (IBAction)register:(id)sender {
     if([_firstname.text isEqualToString:@""]) {
         [utility alertDialog:NSLocalizedString(@"first name is empty", @"")];

@@ -7,16 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyFriendModel.h"
+#import "FriendModel.h"
 
 @interface SettingFriendViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightbarButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *contactButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *searchButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *barcodeButton;
 
-@property (nonatomic, retain) MyFriendModel *myFriendModel;
+@property (nonatomic, retain) FriendModel *myFriendModel;
 @property (weak, nonatomic) IBOutlet UITableView *friendTable;
 
 @end
